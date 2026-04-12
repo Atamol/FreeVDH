@@ -1,6 +1,6 @@
 # FreeVDH
 
-**[English version (README.en.md)](README.en.md)**
+#### [English Version Here (README.en.md)](README.en.md)
 
 ウェブから動画をダウンロードするためのブラウザ拡張機能．
 

@@ -1,6 +1,6 @@
 # FreeVDH
 
-**[日本語版はこちら (README.md)](README.md)**
+#### [日本語版はこちら (README.md)](README.md)
 
 A browser extension for downloading videos from the web.
 
