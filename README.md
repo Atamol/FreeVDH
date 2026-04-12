@@ -1,31 +1,31 @@
 # FreeVDH
 
-**[日本語版はこちら (README.jp.md)](README.jp.md)**
+**[English version (README.en.md)](README.en.md)**
 
-A browser extension for downloading videos from the web.
+ウェブから動画をダウンロードするためのブラウザ拡張機能．
 
-## Overview
+## 概要
 
-FreeVDH is an open-source project based on a customized version of Video DownloadHelper. It is a Chromium-based browser extension that detects and downloads videos from web pages.
+FreeVDHは，Video DownloadHelperをベースにカスタマイズしたオープンソースプロジェクトで，ウェブページ上の動画を検出し，ダウンロードできるようにするChromiumベースのブラウザ拡張機能です．
 
-## Features
+## 機能
 
-- Automatic video detection on web pages
-- Download in multiple formats and qualities
-- HLS / DASH streaming download
-- Support for numerous sites including YouTube
-- SmartNaming for automatic file naming
-- Download history management
-- Side panel / popup dual-mode support
-- No download limits or quality restrictions
+- ウェブページ上の動画を自動検出
+- 複数フォーマット・品質でのダウンロード
+- HLS / DASHストリーミングのダウンロード
+- YouTubeを含む多数のサイトに対応
+- SmartNamingによるファイル名の自動整形
+- ダウンロード履歴の管理
+- サイドパネル / ポップアップの両モード対応
+- ダウンロード回数・品質の制限なし
 
-## Installation
+## インストール
 
-1. Clone or download this repository
-2. Open `chrome://extensions` in Chrome
-3. Enable "Developer mode"
-4. Click "Load unpacked" and select this folder
+1. このリポジトリをクローンまたはダウンロード
+2. Chrome で `chrome://extensions` を開く
+3. 「デベロッパーモード」を有効にする
+4. 「パッケージ化されていない拡張機能を読み込む」をクリックし，このフォルダを選択
 
-## License
+## ライセンス
 
 MIT License
