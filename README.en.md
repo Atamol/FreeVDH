@@ -6,7 +6,7 @@ A browser extension for downloading videos from the web.
 
 ## Overview
 
-FreeVDH is an open-source project based on a customized version of Video DownloadHelper. It is a Chromium-based browser extension that detects and downloads videos from web pages.
+FreeVDH is an open-source project based on a customized version of Video DownloadHelper ([Chrome](https://chromewebstore.google.com/detail/video-downloadhelper/lmjnegcaeklhafolokijcfjliaokphfk?hl=ja) / [Firefox](https://addons.mozilla.org/ja/firefox/addon/video-downloadhelper/)). It is a Chromium-based browser extension that detects and downloads videos from web pages.
 
 ## Features
 
