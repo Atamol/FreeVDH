@@ -14,7 +14,7 @@ FreeVDHは，Video DownloadHelper ([Chrome](https://chromewebstore.google.com/de
 - 複数フォーマット・品質でのダウンロード
 - HLS / DASHストリーミングのダウンロード
 - YouTubeを含む多数のサイトに対応
-- SmartNamingによるファイル名の自動整形
+- BetterSmartNamingによるファイル名の自動整形
 - ダウンロード履歴の管理
 - サイドパネル / ポップアップの両モード対応
 - ダウンロード回数・品質の制限なし

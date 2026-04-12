@@ -14,7 +14,7 @@ FreeVDH is an open-source project based on a customized version of Video Downloa
 - Download in multiple formats and qualities
 - HLS / DASH streaming download
 - Support for numerous sites including YouTube
-- SmartNaming for automatic file naming
+- BetterSmartNaming for automatic file naming
 - Download history management
 - Side panel / popup dual-mode support
 - No download limits or quality restrictions
