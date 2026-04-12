@@ -34,8 +34,6 @@ var Ae = It((xa, nm) => {
 
     /* ================================================================================= */
     (function () {
-      globalThis._i = true;
-      globalThis.am = true;
       const originalDefineProperty = Object.defineProperty;
       Object.defineProperty = function (obj, prop, descriptor) {
         if (["verified", "licensed", "premium", "isPremium"].includes(prop)) {
@@ -56,9 +54,6 @@ var Ae = It((xa, nm) => {
         }
         return originalDefineProperty(obj, prop, descriptor);
       };
-      if (typeof browser !== "undefined" && browser.runtime && browser.runtime.getPlatformInfo) {
-        browser.runtime.getPlatformInfo = async () => ({ os: "linux", arch: "x86-64" });
-      }
     })();
     /* ================================================================================= */
 
@@ -504,10 +499,10 @@ var Ke,
     ((Ke = "google"),
       (Ee = Ke != "mozilla"),
       (Te = Ke == "mozilla"),
-      (_i = !1),
+      (_i = !0),
       (im = !1),
       (om = !1),
-      (am = !1),
+      (am = !0),
       (my = atob(
         "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUZrd0V3WUhLb1pJemowQ0FRWUlLb1pJemowREFRY0RRZ0FFOURtQkJNNitRZ1BDRlhJK2dBTFMreXkvdytBaQplMjdMbXRTWmExWjFWMlV1YWt6UmxzTGgrOFZMdE9KekdwVlcyenQ0bUpSMzVFWFRlYUhOQ0g0bEFBPT0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0tCg==",
       )));
@@ -545,14 +540,7 @@ var fi = st(() => {
   "use strict";
 });
 function hi() {
-  let e = ut(fm.runtime.id);
-  return (
-    om ||
-    e == 8817291756503653 ||
-    e == 5044528540900328 ||
-    e == 5254041105675766 ||
-    e == 0xe4646f42568d6
-  );
+  return !0;
 }
 var fm,
   Ea = st(() => {
@@ -21665,9 +21653,7 @@ Re();
 var lg = ge(Ae(), 1);
 Re();
 async function cg() {
-  if (im) return !1;
-  let e = await lg.default.runtime.getPlatformInfo();
-  return e.os == "linux" || e.os == "openbsd";
+  return !0;
 }
 Re();
 Re();

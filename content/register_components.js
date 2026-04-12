@@ -9636,10 +9636,10 @@ var Me = class extends N {
   onPersistentChanged() {}
 };
 function j(e) {
-  e.removeAttribute("hidden");
+  if (e) e.removeAttribute("hidden");
 }
 function A(e) {
-  e.setAttribute("hidden", "true");
+  if (e) e.setAttribute("hidden", "true");
 }
 function co(e) {
   e.removeAttribute("disabled");
@@ -9648,6 +9648,7 @@ function $r(e) {
   e.setAttribute("disabled", "true");
 }
 function R(e, o) {
+  if (!e) return;
   o ? j(e) : o === !1 ? A(e) : e.hasAttribute("hidden") ? j(e) : A(e);
 }
 var De = class extends N {
@@ -12602,19 +12603,7 @@ var T = class T extends N {
       (this.button_set_incognito.onclick = () => {
         (kd(), window.close());
       }),
-      (this.button_my_account.onclick = () => {
-        (ze.default.tabs.create({ url: qu }), Nr());
-      }),
-      (this.button_restore_purchase.onclick = () => {
-        (ze.default.tabs.create({ url: wr }), Nr());
-      }),
-      (this.button_get_premium.onclick = () => {
-        (ze.default.tabs.create({ url: xr }), Nr());
-      }),
       (this.span_version.textContent = `v${ze.default.runtime.getManifest().version}`),
-      (this.button_leave_review.onclick = () => {
-        I({ name: "show-review-page", data: null });
-      }),
       ze.default.extension.isAllowedIncognitoAccess().then((i) => {
         R(this.section_no_private_browsing, !i);
       }));

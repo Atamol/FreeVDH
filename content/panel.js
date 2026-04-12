@@ -452,10 +452,10 @@ var te = qd((Br, nl) => {
   });
 });
 function j(e) {
-  e.removeAttribute("hidden");
+  if (e) e.removeAttribute("hidden");
 }
 function A(e) {
-  e.setAttribute("hidden", "true");
+  if (e) e.setAttribute("hidden", "true");
 }
 function At(e) {
   e.removeAttribute("disabled");
@@ -464,6 +464,7 @@ function zo(e) {
   e.setAttribute("disabled", "true");
 }
 function N(e, o) {
+  if (!e) return;
   o ? j(e) : o === !1 ? A(e) : e.hasAttribute("hidden") ? j(e) : A(e);
 }
 var Te = "google",
@@ -11179,19 +11180,7 @@ var T = class T extends U {
       (this.button_set_incognito.onclick = () => {
         (yd(), window.close());
       }),
-      (this.button_my_account.onclick = () => {
-        (ke.default.tabs.create({ url: rl }), Cr());
-      }),
-      (this.button_restore_purchase.onclick = () => {
-        (ke.default.tabs.create({ url: Do }), Cr());
-      }),
-      (this.button_get_premium.onclick = () => {
-        (ke.default.tabs.create({ url: Io }), Cr());
-      }),
       (this.span_version.textContent = `v${ke.default.runtime.getManifest().version}`),
-      (this.button_leave_review.onclick = () => {
-        I({ name: "show-review-page", data: null });
-      }),
       ke.default.extension.isAllowedIncognitoAccess().then((i) => {
         N(this.section_no_private_browsing, !i);
       }));

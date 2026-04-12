@@ -474,14 +474,7 @@ function M(g, o = 0) {
 }
 var K = ee(B(), 1);
 function F() {
-  let g = M(K.runtime.id);
-  return (
-    U ||
-    g == 8817291756503653 ||
-    g == 5044528540900328 ||
-    g == 5254041105675766 ||
-    g == 0xe4646f42568d6
-  );
+  return !0;
 }
 var D = "/download_worker/main.js",
   I;

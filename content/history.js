@@ -487,10 +487,10 @@ function Xs(e) {
   );
 }
 function j(e) {
-  e.removeAttribute("hidden");
+  if (e) e.removeAttribute("hidden");
 }
 function A(e) {
-  e.setAttribute("hidden", "true");
+  if (e) e.setAttribute("hidden", "true");
 }
 function At(e) {
   e.removeAttribute("disabled");
@@ -499,6 +499,7 @@ function To(e) {
   e.setAttribute("disabled", "true");
 }
 function N(e, o) {
+  if (!e) return;
   o ? j(e) : o === !1 ? A(e) : e.hasAttribute("hidden") ? j(e) : A(e);
 }
 var Ae = "google",
@@ -12655,19 +12656,7 @@ var T = class T extends U {
       (this.button_set_incognito.onclick = () => {
         (Ed(), window.close());
       }),
-      (this.button_my_account.onclick = () => {
-        (ze.default.tabs.create({ url: nl }), Vr());
-      }),
-      (this.button_restore_purchase.onclick = () => {
-        (ze.default.tabs.create({ url: Ao }), Vr());
-      }),
-      (this.button_get_premium.onclick = () => {
-        (ze.default.tabs.create({ url: Po }), Vr());
-      }),
       (this.span_version.textContent = `v${ze.default.runtime.getManifest().version}`),
-      (this.button_leave_review.onclick = () => {
-        I({ name: "show-review-page", data: null });
-      }),
       ze.default.extension.isAllowedIncognitoAccess().then((i) => {
         N(this.section_no_private_browsing, !i);
       }));
