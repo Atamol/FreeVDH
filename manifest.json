@@ -1,0 +1,189 @@
+{
+  "author": "FreeVDH Team",
+  "name": "FreeVDH",
+  "homepage_url": "https://github.com/Atamol/FreeVDH",
+  "description": "__MSG_appDesc__",
+  "manifest_version": 3,
+  "default_locale": "en",
+  "permissions": [
+    "tabs",
+    "offscreen",
+    "downloads",
+    "sidePanel",
+    "webRequest",
+    "webNavigation",
+    "scripting",
+    "declarativeNetRequest",
+    "storage",
+    "notifications",
+    "contextMenus",
+    "unlimitedStorage"
+  ],
+  "optional_permissions": [
+    "browsingData",
+    "downloads.open"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "icons": {
+    "128": "bitmaps/logo-128-color.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'"
+  },
+  "action": {
+    "default_title": "FreeVDH",
+    "default_icon": {
+      "128": "bitmaps/logo-128-color.png"
+    }
+  },
+  "commands": {
+    "default-action": {
+      "description": "Execute default action",
+      "suggested_key": {
+        "default": "Alt+Down",
+        "mac": "Ctrl+Shift+Down"
+      }
+    },
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Up",
+        "mac": "Ctrl+Shift+Up"
+      }
+    }
+  },
+  "background": {
+    "type": "module",
+    "service_worker": "service/main.js"
+  },
+  "content_scripts": [
+    {
+      "world": "ISOLATED",
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["injected/youtube.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    },
+    {
+      "world": "MAIN",
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["injected/youtube_untrusted.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    },
+    {
+      "world": "ISOLATED",
+      "matches": ["*://*.vimeo.com/*"],
+      "js": ["injected/vimeo.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "world": "MAIN",
+      "matches": ["*://*.vimeo.com/*"],
+      "js": ["injected/vimeo_untrusted.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "world": "ISOLATED",
+      "matches": ["*://*.facebook.com/*", "*://*.instagram.com/*"],
+      "js": ["injected/facebook.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    },
+    {
+      "world": "ISOLATED",
+      "matches": ["*://*.ok.ru/*", "*://*.m.ok.ru/*"],
+      "js": ["injected/ok.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    },
+    {
+      "world": "ISOLATED",
+      "matches": ["*://*.vk.com/*", "*://*.vk.ru/*", "*://*.vkvideo.ru/*", "*://live.vkvideo.ru/*"],
+      "js": ["injected/vk.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    },
+    {
+      "world": "ISOLATED",
+      "matches": ["*://*.canva.com/*"],
+      "js": ["injected/canva.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    },
+    {
+      "world": "ISOLATED",
+      "matches": ["*://*.iq.com/*"],
+      "js": ["injected/iq.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    },
+    {
+      "world": "MAIN",
+      "matches": ["*://*.iq.com/*"],
+      "js": ["injected/iq_untrusted.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    },
+    {
+      "world": "ISOLATED",
+      "matches": ["*://*.twitcasting.tv/*"],
+      "js": ["injected/twitcasting.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    },
+    {
+      "world": "ISOLATED",
+      "matches": ["*://*.bilibili.tv/*", "*://*.bilibili.com/*"],
+      "js": ["injected/bilibili.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    },
+    {
+      "world": "MAIN",
+      "matches": ["*://*.bilibili.tv/*", "*://*.bilibili.com/*"],
+      "js": ["injected/bilibili_untrusted.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    },
+    {
+      "world": "MAIN",
+      "matches": ["*://*.taiav.com/*"],
+      "js": ["injected/taiav.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    },
+    {
+      "world": "ISOLATED",
+      "matches": ["*://*.osmosis.org/*"],
+      "js": ["injected/osmosis.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    },
+    {
+      "world": "ISOLATED",
+      "matches": ["*://*.kick.com/*"],
+      "js": ["injected/kick.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    },
+    {
+      "world": "ISOLATED",
+      "matches": ["*://*.chaturbate.com/*", "*://*.chaturbate.eu/*", "*://*.chaturbate.global/*"],
+      "js": ["injected/chaturbate.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ],
+  "side_panel": {
+    "default_title": "FreeVDH",
+    "default_path": "/content/sidebar.html",
+    "default_icon": {
+      "128": "bitmaps/logo-128-color.png"
+    }
+  },
+  "version": "10.2.33.2"
+}

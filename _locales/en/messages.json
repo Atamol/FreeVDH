@@ -1,0 +1,392 @@
+{
+  "appDesc": {
+    "message": "Download Videos from the Web."
+  },
+  "restore_purchase_button": {
+    "message": "Restore purchase"
+  },
+  "get_premium_button": {
+    "message": "Get premium"
+  },
+  "back": {
+    "message": "Back"
+  },
+  "rm_notifications_all": {
+    "message": "Dismiss all notifications"
+  },
+  "waiting_for_media": {
+    "message": "Waiting for media…"
+  },
+  "nomedia_title": {
+    "message": "Can't see the media you're looking for?"
+  },
+  "nomedia_description": {
+    "message": "Start the video (and skip ads if any) to help detect the media. Or report missing media."
+  },
+  "nomedia_reload_button": {
+    "message": "Force detection"
+  },
+  "nomedia_reload_button_tooltip": {
+    "message": "Force page reload (clear cookies)"
+  },
+  "show_nomedia_button": {
+    "message": "No video?"
+  },
+  "show_nomedia_button_tooltip": {
+    "message": "Click here if you can't find your video"
+  },
+  "setting_button_tooltip": {
+    "message": "Settings"
+  },
+  "history_button_tooltip": {
+    "message": "Show Download History"
+  },
+  "show_all_history_button": {
+    "message": "show all"
+  },
+  "complete_title": {
+    "message": "Complete"
+  },
+  "hide_complete_button": {
+    "message": "hide"
+  },
+  "translate_button_tooltip": {
+    "message": "Help translate VDH"
+  },
+  "help_button_tooltip": {
+    "message": "Help"
+  },
+  "open_source_tab_button_tooltip": {
+    "message": "Open source tab"
+  },
+  "retry_download_button_tooltip": {
+    "message": "Retry download"
+  },
+  "delete_file_button_tooltip": {
+    "message": "Delete file"
+  },
+  "download_directory_button_tooltip": {
+    "message": "Show download folder"
+  },
+  "clear_downloaded_tooltip": {
+    "message": "Clear completed downloaded"
+  },
+  "show_in_popup_button_tooltip": {
+    "message": "Show in popup"
+  },
+  "show_in_sidebar_button_tooltip": {
+    "message": "Show in sidebar"
+  },
+  "video_not_playing_button_tooltip": {
+    "message": "Video not playing?"
+  },
+  "play": {
+    "message": "Play"
+  },
+  "warn_drm_tooltip": {
+    "message": "DRM detected"
+  },
+  "version_title": {
+    "message": "Version"
+  },
+  "account_title": {
+    "message": "Account"
+  },
+  "one_hundred_downloads_title": {
+    "message": "You've downloaded 100 videos!"
+  },
+  "leave_review_description": {
+    "message": "We hope you're enjoying FreeVDH :) Would you mind writing a nice review on the addon website?"
+  },
+  "leave_review_button": {
+    "message": "Leave a review"
+  },
+  "account_status": {
+    "message": "Status"
+  },
+  "account_status_premium": {
+    "message": "Premium ($1)"
+  },
+  "free_account": {
+    "message": "Free plan"
+  },
+  "copy_to_clipboard": {
+    "message": "Copy information to clipboard"
+  },
+  "my_account_button": {
+    "message": "My account"
+  },
+  "download_title": {
+    "message": "Downloads"
+  },
+  "show_notification": {
+    "message": "Show notification when download is complete"
+  },
+  "max_parallel_downloads": {
+    "message": "Max concurrent downloads"
+  },
+  "saveas_detected_warning": {
+    "message": "We have detected that your browser shows a 'Save As' dialog, once the download is finished. We recommend disabling that option in your browser settings"
+  },
+  "change_saveas_setting": {
+    "message": "Change setting"
+  },
+  "download_directory_title": {
+    "message": "Download Directory"
+  },
+  "download_directory_description": {
+    "message": "Videos are downloaded in the default browser download directory. You can also specicify a sub-directory. Website-specific download directories can be set with the smartnaming tool."
+  },
+  "change_browser_download_directory": {
+    "message": "Change browser download directory"
+  },
+  "bad_download_subdirectory_warning": {
+    "message": "The sub-directory you specified is not valid."
+  },
+  "download_subdirectory": {
+    "message": "Download subdirectory"
+  },
+  "private_browsing_title": {
+    "message": "Private browsing"
+  },
+  "private_browsing_warning": {
+    "message": "FreeVDH is not enabled in a Private/Incognito windows. You need to turn on that option manually (this is not required)."
+  },
+  "private_browsing_notifications": {
+    "message": "Show notification for private downloads"
+  },
+  "private_browsing_button": {
+    "message": "Change private browsing setting"
+  },
+  "throttle_youtube": {
+    "message": "Throttle YouTube (slower downloads, but less likely to be blocked)"
+  },
+  "prefer_original_audio": {
+    "message": "Prefer original audio"
+  },
+  "settings_history_title": {
+    "message": "History"
+  },
+  "transient_history_description": {
+    "message": "Show complete downloads in panel"
+  },
+  "history_limit": {
+    "message": "Forget download history after X days"
+  },
+  "appearance_title": {
+    "message": "Appearance"
+  },
+  "theme_title": {
+    "message": "Theme"
+  },
+  "theme_light": {
+    "message": "light"
+  },
+  "theme_dark": {
+    "message": "dark"
+  },
+  "theme_system": {
+    "message": "system"
+  },
+  "popup_size_title": {
+    "message": "Window size"
+  },
+  "popup_size_small": {
+    "message": "Small"
+  },
+  "popup_size_medium": {
+    "message": "Medium"
+  },
+  "popup_size_big": {
+    "message": "Big"
+  },
+  "font_size_title": {
+    "message": "Text size"
+  },
+  "font_size_default": {
+    "message": "Default"
+  },
+  "font_size_large": {
+    "message": "Large"
+  },
+  "font_size_verylarge": {
+    "message": "Very large"
+  },
+  "panel_position_title": {
+    "message": "Panel position"
+  },
+  "use_popup": {
+    "message": "Show in popup"
+  },
+  "use_sidebar": {
+    "message": "Show in sidebar"
+  },
+  "behavior_title": {
+    "message": "Behavior"
+  },
+  "controls_title": {
+    "message": "Controls"
+  },
+  "show_in_context_menu": {
+    "message": "Access commands from right-click in page"
+  },
+  "restart_addon": {
+    "message": "Reload addon"
+  },
+  "reset_settings": {
+    "message": "Reset settings"
+  },
+  "prefered_quality": {
+    "message": "Prefered video quality"
+  },
+  "prefered_quality_highest": {
+    "message": "Highest (slow download, high resolution)"
+  },
+  "prefered_quality_1080p": {
+    "message": "1080p (good default)"
+  },
+  "prefered_quality_720p": {
+    "message": "720p (fast download, low resolution)"
+  },
+  "prefered_quality_480p": {
+    "message": "480p (faster download, lower resolution)"
+  },
+  "prefer_mkv": {
+    "message": "Download as MKV when possible"
+  },
+  "preview_mode_title": {
+    "message": "Media preview"
+  },
+  "preview_mode_none": {
+    "message": "Disabled"
+  },
+  "preview_mode_video": {
+    "message": "Short video preview"
+  },
+  "preview_mode_image": {
+    "message": "Image"
+  },
+  "media_discovered_ordering_title": {
+    "message": "Media sorting strategy"
+  },
+  "order_media_smart": {
+    "message": "Smart (recommended)"
+  },
+  "order_media_by_newest": {
+    "message": "Newest first"
+  },
+  "order_media_by_oldest": {
+    "message": "Oldest first"
+  },
+  "history_title": {
+    "message": "Download History"
+  },
+  "history_warning": {
+    "message": "We do not record your download history. Do you want FreeVDH to remember your download history?"
+  },
+  "history_warning_2": {
+    "message": "Don't worry, everything stays on your machine. We value your privacy."
+  },
+  "enable_history": {
+    "message": "Enable History"
+  },
+  "clear_history": {
+    "message": "Clear History"
+  },
+  "disable_history": {
+    "message": "Do not remember my history"
+  },
+  "no_downloads_yet": {
+    "message": "No entries yet."
+  },
+  "download_failed": {
+    "message": "Download failed"
+  },
+  "download_failed_description": {
+    "message": "Sadly we failed at downloading that specific media. We try to support as many websites as possible, so it would help a lot if you could report that error (it's anonymous!)."
+  },
+  "download_interrupted": {
+    "message": "Download interrupted"
+  },
+  "download_interrupted_description": {
+    "message": "We managed to download your file, but there was a network issues, so the file might be shorter than expected. We try to support as many websites as possible, so it would help a lot if you could report this problem (it's anonymous!)."
+  },
+  "download_with_drm_failed_description": {
+    "message": "Something didn't work. And we think this video has DRM. We do not support videos with DRM."
+  },
+  "no_youtube": {
+    "message": "Download from youtube not allowed"
+  },
+  "no_youtube_description": {
+    "message": "Unfortunately, the Chrome Web Store does not allow extensions for downloading YouTube videos so we could not include this feature in the Chrome version of the extension."
+  },
+  "no_youtube_description_2": {
+    "message": "Please use Firefox or Microsoft Edge"
+  },
+  "premium_required": {
+    "message": "Premium status required"
+  },
+  "premium_yt_required_description": {
+    "message": "Without Premium status, a YouTube download can only be performed 2 hours after the previous one."
+  },
+  "premium_hls_required_description": {
+    "message": "Without Premium status, an HLS or MPD download can only be performed 2 hours after the previous one."
+  },
+  "premium_all_required_description": {
+    "message": "Without Premium status, a download can only be performed 2 hours after the previous one."
+  },
+  "youtube_too_many_downloads": {
+    "message": "Oops, YouTube seems to be blocked"
+  },
+  "youtube_too_many_downloads_description": {
+    "message": "YouTube sometimes will limit how many videos can be requested. Nothing we can do about sadly. Try again later."
+  },
+  "stop": {
+    "message": "Stop"
+  },
+  "cancel": {
+    "message": "Cancel"
+  },
+  "copy_url": {
+    "message": "Copy URL"
+  },
+  "always_copy_url": {
+    "message": "Always copy URL"
+  },
+  "download_button": {
+    "message": "Download"
+  },
+  "download_as_button_and_menu": {
+    "message": "Download As…"
+  },
+  "rename_short": {
+    "message": "Rename"
+  },
+  "always_download_as_menu": {
+    "message": "Always Download As…"
+  },
+  "download_audio_button": {
+    "message": "Audio"
+  },
+  "download_audio_and_video_menu": {
+    "message": "Download Audio & video"
+  },
+  "download_audio_only_menu": {
+    "message": "Download Audio"
+  },
+  "audio_only_for_this_website": {
+    "message": "Always audio only for this website"
+  },
+  "details": {
+    "message": "Details"
+  },
+  "report": {
+    "message": "Report"
+  },
+  "reporting": {
+    "message": "Reporting…"
+  },
+  "reported_thankyou": {
+    "message": "Thank you!"
+  }
+}

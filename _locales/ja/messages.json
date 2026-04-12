@@ -1,0 +1,365 @@
+{
+  "appDesc": {
+    "message": "ウェブから動画をダウンロード"
+  },
+  "restore_purchase_button": {
+    "message": "購入を復元"
+  },
+  "get_premium_button": {
+    "message": "プレミアムに更新"
+  },
+  "back": {
+    "message": "戻る"
+  },
+  "rm_notifications_all": {
+    "message": "すべての通知を閉じる"
+  },
+  "waiting_for_media": {
+    "message": "メディアを待っています…"
+  },
+  "nomedia_title": {
+    "message": "お探しのメディアが見つかりませんか?"
+  },
+  "nomedia_description": {
+    "message": "メディア検出のために動画を再生してください(広告がある場合スキップ)。それでもメディアが見つからない場合、報告してください。"
+  },
+  "nomedia_reload_button": {
+    "message": "強制検出"
+  },
+  "nomedia_reload_button_tooltip": {
+    "message": "強制ページ更新(クッキーを削除)"
+  },
+  "show_nomedia_button": {
+    "message": "動画がない"
+  },
+  "show_nomedia_button_tooltip": {
+    "message": "動画が見つからない場合はこちら"
+  },
+  "setting_button_tooltip": {
+    "message": "設定…"
+  },
+  "history_button_tooltip": {
+    "message": "ダウンロード履歴を表示"
+  },
+  "show_all_history_button": {
+    "message": "全表示"
+  },
+  "complete_title": {
+    "message": "完了"
+  },
+  "hide_complete_button": {
+    "message": "非表示"
+  },
+  "translate_button_tooltip": {
+    "message": "FreeVDHの翻訳にご協力下さい"
+  },
+  "help_button_tooltip": {
+    "message": "ヘルプ"
+  },
+  "open_source_tab_button_tooltip": {
+    "message": "ソースタブを開く"
+  },
+  "retry_download_button_tooltip": {
+    "message": "再ダウンロード"
+  },
+  "delete_file_button_tooltip": {
+    "message": "ファイルを削除"
+  },
+  "download_directory_button_tooltip": {
+    "message": "ダウンロードフォルダーを開く"
+  },
+  "clear_downloaded_tooltip": {
+    "message": "ダウンロード履歴をクリア"
+  },
+  "show_in_popup_button_tooltip": {
+    "message": "ポップアップで表示"
+  },
+  "show_in_sidebar_button_tooltip": {
+    "message": "サイドバーに表示"
+  },
+  "video_not_playing_button_tooltip": {
+    "message": "動画が再生されませんか?"
+  },
+  "play": {
+    "message": "再生"
+  },
+  "warn_drm_tooltip": {
+    "message": "DRMが検出されました"
+  },
+  "version_title": {
+    "message": "バージョン"
+  },
+  "account_title": {
+    "message": "アカウント"
+  },
+  "one_hundred_downloads_title": {
+    "message": "100本の動画をダウンロードしました！"
+  },
+  "leave_review_description": {
+    "message": "FreeVDH をお楽しみいただければ幸いです :) アドオン Web サイトに素敵なレビューを書いていただけませんか?"
+  },
+  "leave_review_button": {
+    "message": "レビューする"
+  },
+  "account_status": {
+    "message": "ステータス"
+  },
+  "account_status_premium": {
+    "message": "プレミアム ($1)"
+  },
+  "free_account": {
+    "message": "無料プラン"
+  },
+  "copy_to_clipboard": {
+    "message": "クリップボードにコピー"
+  },
+  "my_account_button": {
+    "message": "マイアカウント"
+  },
+  "download_title": {
+    "message": "ダウンロード"
+  },
+  "show_notification": {
+    "message": "ダウンロード完了後に通知する"
+  },
+  "max_parallel_downloads": {
+    "message": "最大同時ダウンロード数"
+  },
+  "saveas_detected_warning": {
+    "message": "お使いのブラウザでは、ダウンロード完了時に「名前を付けて保存」ダイアログが表示される設定になっています。 ブラウザの設定で、このオプションを無効にすることをおすすめします。"
+  },
+  "change_saveas_setting": {
+    "message": "設定を変更する"
+  },
+  "download_directory_title": {
+    "message": "保存先"
+  },
+  "download_directory_description": {
+    "message": "動画は、ブラウザ規定の保存先にダウンロードされますが、サブフォルダを指定することもできます。また、サイトごとの保存先はSmartnamingツールで設定できます。"
+  },
+  "change_browser_download_directory": {
+    "message": "ブラウザの保存先を変更する"
+  },
+  "bad_download_subdirectory_warning": {
+    "message": "入力されたサブフォルダ名の文字列が不正です"
+  },
+  "download_subdirectory": {
+    "message": "サブフォルダー"
+  },
+  "private_browsing_title": {
+    "message": "プライベートブラウズモード"
+  },
+  "private_browsing_warning": {
+    "message": "FreeVDHは プライベート/シークレット ウィンドウで有効化されません。使用するには、手動で有効にする必要があります（必須ではありません）。"
+  },
+  "private_browsing_notifications": {
+    "message": "プライベートダウンロードの通知を表示する"
+  },
+  "private_browsing_button": {
+    "message": "プライベートブラウズモードの設定を変更する"
+  },
+  "throttle_youtube": {
+    "message": "YouTubeの速度を制限する（ダウンロード速度は遅くなるが、ブロックされる可能性が低くなる）"
+  },
+  "prefer_original_audio": {
+    "message": "オリジナルの言語の音声を利用する"
+  },
+  "settings_history_title": {
+    "message": "履歴"
+  },
+  "transient_history_description": {
+    "message": "完了されたダウンロードをパネルに表示する"
+  },
+  "history_limit": {
+    "message": "日後にダウンロード履歴を自動で削除する"
+  },
+  "appearance_title": {
+    "message": "外観"
+  },
+  "theme_title": {
+    "message": "テーマ"
+  },
+  "theme_light": {
+    "message": "ライトモード"
+  },
+  "theme_dark": {
+    "message": "ダークモード"
+  },
+  "theme_system": {
+    "message": "システム標準"
+  },
+  "popup_size_title": {
+    "message": "ウィンドウサイズ"
+  },
+  "popup_size_small": {
+    "message": "小"
+  },
+  "popup_size_medium": {
+    "message": "中"
+  },
+  "popup_size_big": {
+    "message": "大"
+  },
+  "panel_position_title": {
+    "message": "パネルの位置"
+  },
+  "use_popup": {
+    "message": "ポップアップで表示"
+  },
+  "use_sidebar": {
+    "message": "サイドバーで表示"
+  },
+  "behavior_title": {
+    "message": "動作"
+  },
+  "controls_title": {
+    "message": "操作"
+  },
+  "show_in_context_menu": {
+    "message": "ページ内を右クリックしてコマンドにアクセス"
+  },
+  "restart_addon": {
+    "message": "FreeVDHを再起動する"
+  },
+  "reset_settings": {
+    "message": "設定を初期化"
+  },
+  "prefered_quality": {
+    "message": "推奨動画品質"
+  },
+  "prefered_quality_highest": {
+    "message": "最高画質 （ダウンロード速度が遅い、高解像度）"
+  },
+  "prefered_quality_1080p": {
+    "message": "1080p （デフォルト、バランス重視）"
+  },
+  "prefered_quality_720p": {
+    "message": "720p （高速ダウンロード、低解像度）"
+  },
+  "prefer_mkv": {
+    "message": "可能な場合はMKV形式でダウンロード"
+  },
+  "preview_mode_title": {
+    "message": "メディアのプレビュー"
+  },
+  "preview_mode_none": {
+    "message": "無効"
+  },
+  "preview_mode_video": {
+    "message": "ショート動画でプレビュー"
+  },
+  "preview_mode_image": {
+    "message": "画像"
+  },
+  "history_title": {
+    "message": "ダウンロード履歴"
+  },
+  "history_warning": {
+    "message": "ダウンロード履歴は記録されていません。FreeVDHでダウンロード履歴を記録しますか？"
+  },
+  "history_warning_2": {
+    "message": "ご安心ください。データはすべてお使いの端末内に保存されます。我々はプライバシーを尊重しています。"
+  },
+  "enable_history": {
+    "message": "履歴を有効化"
+  },
+  "clear_history": {
+    "message": "履歴を消去"
+  },
+  "disable_history": {
+    "message": "履歴を無効化"
+  },
+  "no_downloads_yet": {
+    "message": "まだダウンロードされていません"
+  },
+  "download_failed": {
+    "message": "ダウンロードに失敗しました"
+  },
+  "download_failed_description": {
+    "message": "残念ながら、このメディアのダウンロードに失敗しました。 改善のため、エラーの報告にご協力ください（報告は匿名です）。"
+  },
+  "download_interrupted": {
+    "message": "ダウンロードが中断されました"
+  },
+  "download_interrupted_description": {
+    "message": "ファイルはダウンロードされましたが、ネットワークの問題により、内容が完全でない可能性があります。 改善のため、問題の報告にご協力ください（報告は匿名です）。"
+  },
+  "download_with_drm_failed_description": {
+    "message": "処理に失敗しました。この動画には DRM が含まれている可能性があります。DRM 付きの動画はサポートしていません。"
+  },
+  "no_youtube": {
+    "message": "YouTubeからのダウンロードはできません"
+  },
+  "no_youtube_description": {
+    "message": "申し訳ありませんが、Chrome ウェブストアでは YouTube 動画のダウンロード用の拡張機能が許可されないため、この機能を Chrome バージョンの拡張機能に含めることができませんでした。"
+  },
+  "no_youtube_description_2": {
+    "message": "Firefox または Microsoft Edge をご利用ください"
+  },
+  "premium_required": {
+    "message": "プレミアムステータスが必要"
+  },
+  "premium_yt_required_description": {
+    "message": "プレミアムステータスでない場合、YouTubeのダウンロードは前回の2時間後に実行できます"
+  },
+  "premium_hls_required_description": {
+    "message": "プレミアムステータスでない場合、HLS または MPD ダウンロードは前回の2時間後に実行できます"
+  },
+  "premium_all_required_description": {
+    "message": "プレミアムステータスでない場合、ダウンロードは前回の2時間後に実行できます"
+  },
+  "youtube_too_many_downloads": {
+    "message": "おっと、YouTubeがブロックされているようです"
+  },
+  "youtube_too_many_downloads_description": {
+    "message": "YouTubeでは、リクエストできる動画の数に制限がかかる場合があります。残念ながら、これについては対応できません。後ほど再度お試しください。"
+  },
+  "stop": {
+    "message": "停止"
+  },
+  "cancel": {
+    "message": "キャンセル"
+  },
+  "copy_url": {
+    "message": "URLをコピー"
+  },
+  "always_copy_url": {
+    "message": "常にURLをコピーする"
+  },
+  "download_button": {
+    "message": "ダウンロード"
+  },
+  "download_as_button_and_menu": {
+    "message": "名前を付けてダウンロード"
+  },
+  "rename_short": {
+    "message": "名前を変更"
+  },
+  "always_download_as_menu": {
+    "message": "常にダウンロード形式を…"
+  },
+  "download_audio_button": {
+    "message": "オーディオ"
+  },
+  "download_audio_and_video_menu": {
+    "message": "オーディオとビデオをダウンロードする"
+  },
+  "download_audio_only_menu": {
+    "message": "音声をダウンロード"
+  },
+  "audio_only_for_this_website": {
+    "message": "このウェブサイトでは常に音声のみ利用する"
+  },
+  "details": {
+    "message": "詳細"
+  },
+  "report": {
+    "message": "報告"
+  },
+  "reporting": {
+    "message": "報告中"
+  },
+  "reported_thankyou": {
+    "message": "ありがとうございました！"
+  }
+}
