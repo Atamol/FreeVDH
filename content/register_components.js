@@ -12161,7 +12161,7 @@ var Oe = class extends N {
       let n = r.playlist[0].size;
       n.isSome() ? (this.p_size.textContent = ce(n.value)) : A(this.p_size);
     } else A(this.p_size);
-    (R(this.p_star, t),
+    (A(this.p_star),
       i.favicon_url.isSome()
         ? (this.div_favicon.style.backgroundImage = `url(${i.favicon_url.value.href})`)
         : A(this.div_favicon));
