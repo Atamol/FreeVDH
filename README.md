@@ -9,9 +9,9 @@
 FreeVDHは，Video DownloadHelper ([Chrome](https://chromewebstore.google.com/detail/video-downloadhelper/lmjnegcaeklhafolokijcfjliaokphfk?hl=ja) / [Firefox](https://addons.mozilla.org/ja/firefox/addon/video-downloadhelper/)) をベースにカスタマイズしたオープンソースプロジェクトで，ウェブページ上の動画を検出し，ダウンロードできるようにするChromiumベースのブラウザ拡張機能です．
 
 <table><tr>
-<td><a href="docs/sample-1_light.png?raw=true"><img src="docs/sample-1_light.png" width="300"></a></td>
-<td><a href="docs/sample-2_light.png?raw=true"><img src="docs/sample-2_light.png" width="300"></a></td>
-<td><a href="docs/sample-3_dark.png?raw=true"><img src="docs/sample-3_dark.png" width="300"></a></td>
+<td><a href="https://raw.githubusercontent.com/Atamol/FreeVDH/main/docs/sample-1_light.png"><img src="docs/sample-1_light.png" width="300"></a></td>
+<td><a href="https://raw.githubusercontent.com/Atamol/FreeVDH/main/docs/sample-2_light.png"><img src="docs/sample-2_light.png" width="300"></a></td>
+<td><a href="https://raw.githubusercontent.com/Atamol/FreeVDH/main/docs/sample-3_dark.png"><img src="docs/sample-3_dark.png" width="300"></a></td>
 </tr></table>
 
 ## 機能
