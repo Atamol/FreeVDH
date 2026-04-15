@@ -180,13 +180,13 @@
     "message": "Theme"
   },
   "theme_light": {
-    "message": "light"
+    "message": "Light"
   },
   "theme_dark": {
-    "message": "dark"
+    "message": "Dark"
   },
   "theme_system": {
-    "message": "system"
+    "message": "System"
   },
   "popup_size_title": {
     "message": "Window size"
