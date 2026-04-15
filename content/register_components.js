@@ -12339,8 +12339,7 @@ var T = class T extends N {
   }
   onPersistentChanged() {
     let o = this.persistent();
-    if (
-      ((this.checkbox_youtube_throttle.checked = o.youtube_throttle),
+    ((this.checkbox_youtube_throttle.checked = o.youtube_throttle),
       (this.checkbox_youtube_audio_original.checked = o.youtube_audio_strategy == "original"),
       (this.input_concurrent_downloads.value = o.max_concurrent_downloads.toString()),
       (this.checkbox_show_desktop_notifications.checked = o.show_desktop_notifications),
@@ -12377,23 +12376,7 @@ var T = class T extends N {
         : (j(this.input_history.parentElement),
           (this.input_history.value = o.history_days.toString())),
       (this.checkbox_context_menu.checked = o.use_context_menu),
-      (this.input_subdirectory.value = o.download_directory),
-      o.jwt)
-    ) {
-      let r = o.jwt;
-      ((this.span_jwt_status.textContent = Z(
-        "account_status_premium",
-        [r.store],
-        o.custom_strings.addon,
-      )),
-        R(this.button_my_account, r.entitlement_type == "SUBSCRIPTION"),
-        A(this.button_get_premium),
-        A(this.button_restore_purchase));
-    } else
-      ((this.span_jwt_status.textContent = Z("free_account", [], o.custom_strings.addon)),
-        A(this.button_my_account),
-        j(this.button_get_premium),
-        j(this.button_restore_purchase));
+      (this.input_subdirectory.value = o.download_directory));
     A(this.p_leave_review);
   }
   scrollUp() {
@@ -12406,9 +12389,7 @@ var T = class T extends N {
     super("#settings-template");
   }
   onMounted() {
-    (Sd().then((i) => {
-      (R(this.box_account_not_linux, !i), R(this.p_leave_review, i));
-    }),
+    (A(this.p_leave_review),
       Pe == "google" && !Vu && A(this.section_youtube),
       (this.button_back.onclick = () => {
         let i = new CustomEvent(T.TOGGLE_SETTINGS, { composed: !0 });
@@ -12633,11 +12614,9 @@ var T = class T extends N {
   c([_(HTMLButtonElement)], T.prototype, "button_reset", 2),
   c([_(HTMLButtonElement)], T.prototype, "button_copy", 2),
   c([_(HTMLSpanElement)], T.prototype, "span_version", 2),
-  c([_(HTMLSpanElement)], T.prototype, "span_jwt_status", 2),
   c([_(HTMLButtonElement)], T.prototype, "button_my_account", 2),
   c([_(HTMLButtonElement)], T.prototype, "button_restore_purchase", 2),
   c([_(HTMLButtonElement)], T.prototype, "button_get_premium", 2),
-  c([_(HTMLElement)], T.prototype, "box_account_not_linux", 2),
   c([_(HTMLParagraphElement)], T.prototype, "p_leave_review", 2),
   c([_(HTMLButtonElement)], T.prototype, "button_leave_review", 2),
   c([_(HTMLInputElement)], T.prototype, "checkbox_always_download_as_mkv", 2),
