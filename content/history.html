@@ -6211,6 +6211,31 @@ select:focus-visible {
       </vbox>
 
       <vbox class="roundedbox">
+        <h2 data-i18n="appearance_title"></h2>
+        <vbox>
+          <h3 data-i18n="preview_mode_title"></h3>
+          <label><input type="radio" name="preview_mode" value="preview_mode_none"/><span data-i18n="preview_mode_none"></span></label>
+          <label><input type="radio" name="preview_mode" value="preview_mode_video"/><span data-i18n="preview_mode_video"></span></label>
+          <label><input type="radio" name="preview_mode" value="preview_mode_image"/><span data-i18n="preview_mode_image"></span></label>
+          <h3 data-i18n="theme_title"></h3>
+          <label><input type="radio" name="settings_theme" value="theme_system"/><span data-i18n="theme_system"></span></label>
+          <label><input type="radio" name="settings_theme" value="theme_dark"/><span data-i18n="theme_dark"></span></label>
+          <label><input type="radio" name="settings_theme" value="theme_light"/><span data-i18n="theme_light"></span></label>
+          <h3 data-i18n="popup_size_title"></h3>
+          <label><input type="radio" name="settings_popup_size" value="popup_size_small"/><span data-i18n="popup_size_small"></span></label>
+          <label><input type="radio" name="settings_popup_size" value="popup_size_medium"/><span data-i18n="popup_size_medium"></span></label>
+          <label><input type="radio" name="settings_popup_size" value="popup_size_big"/><span data-i18n="popup_size_big"></span></label>
+          <h3 data-i18n="font_size_title"></h3>
+          <label><input type="radio" name="settings_font_size" value="font_size_default"/><span data-i18n="font_size_default"></span></label>
+          <label><input type="radio" name="settings_font_size" value="font_size_large"/><span data-i18n="font_size_large"></span></label>
+          <label><input type="radio" name="settings_font_size" value="font_size_verylarge"/><span data-i18n="font_size_verylarge"></span></label>
+          <h3 data-i18n="panel_position_title"></h3>
+          <label><input type="radio" name="settings_dock" value="dock_popup"/><span data-i18n="use_popup"></span></label>
+          <label><input type="radio" name="settings_dock" value="dock_sidebar"/><span data-i18n="use_sidebar"></span></label>
+        </vbox>
+      </vbox>
+
+      <vbox class="roundedbox">
         <h2 data-i18n="download_title"></h2>
         <vbox>
           <vbox xalign="start" id="section_suspecting_saveas" hidden="true">
@@ -6222,7 +6247,7 @@ select:focus-visible {
             </p>
             <button id="button_saveas" data-i18n="change_saveas_setting"></button>
           </vbox>
-          <label><input type="checkbox" id ="checkbox_always_download_as_mkv"/><span data-i18n="prefer_mkv"></span></label>        
+          <label><input type="checkbox" id ="checkbox_always_download_as_mkv"/><span data-i18n="prefer_mkv"></span></label>
           <label><input type="checkbox" id="checkbox_show_desktop_notifications"/><span data-i18n="show_notification"></span></label>
           <label><input type="number" min="1" max="128" id="input_concurrent_downloads" maxlength="3"/><span data-i18n="max_parallel_downloads"></span></label>
           <h3 data-i18n="prefered_quality"></h3>
@@ -6251,52 +6276,11 @@ select:focus-visible {
       </vbox>
 
       <vbox class="roundedbox">
-        <h2 data-i18n="private_browsing_title"></h2>
-        <vbox>
-          <vbox xalign="start" id="section_no_private_browsing" hidden="true">
-            <p>
-              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                <path d='M12 8.5V14m0 3.247v-.5m-6.02-5.985C8.608 5.587 9.92 3 12 3s3.393 2.587 6.02 7.762l.327.644c2.182 4.3 3.274 6.45 2.287 8.022C19.648 21 17.208 21 12.327 21h-.654c-4.88 0-7.321 0-8.307-1.572s.105-3.722 2.287-8.022z'/>
-              </svg>
-              <span data-i18n="private_browsing_warning"></span>
-            </p>
-            <button id="button_set_incognito" data-i18n="private_browsing_button"></button>
-          </vbox>
-          <label><input type="checkbox" id="checkbox_show_desktop_notifications_private"/><span data-i18n="private_browsing_notifications"></span></label>
-        </vbox>
-      </vbox>
-
-      <vbox class="roundedbox">
         <h2 data-i18n="settings_history_title"></h2>
         <vbox>
           <label><input type="checkbox" id="checkbox_transient_history"/><span data-i18n="transient_history_description"><span></label>
           <label><input type="checkbox" id="checkbox_history"/><span data-i18n="enable_history"><span></label>
           <label><input type="number" min="1" max="128" id="input_history" maxlength="3"/><span data-i18n="history_limit"></span></label>
-        </vbox>
-      </vbox>
-
-      <vbox class="roundedbox">
-        <h2 data-i18n="appearance_title"></h2>
-        <vbox>
-          <h3 data-i18n="preview_mode_title"></h3>
-          <label><input type="radio" name="preview_mode" value="preview_mode_none"/><span data-i18n="preview_mode_none"></span></label>
-          <label><input type="radio" name="preview_mode" value="preview_mode_video"/><span data-i18n="preview_mode_video"></span></label>
-          <label><input type="radio" name="preview_mode" value="preview_mode_image"/><span data-i18n="preview_mode_image"></span></label>
-          <h3 data-i18n="theme_title"></h3>
-          <label><input type="radio" name="settings_theme" value="theme_system"/><span data-i18n="theme_system"></span></label>
-          <label><input type="radio" name="settings_theme" value="theme_dark"/><span data-i18n="theme_dark"></span></label>
-          <label><input type="radio" name="settings_theme" value="theme_light"/><span data-i18n="theme_light"></span></label>
-          <h3 data-i18n="popup_size_title"></h3>
-          <label><input type="radio" name="settings_popup_size" value="popup_size_small"/><span data-i18n="popup_size_small"></span></label>
-          <label><input type="radio" name="settings_popup_size" value="popup_size_medium"/><span data-i18n="popup_size_medium"></span></label>
-          <label><input type="radio" name="settings_popup_size" value="popup_size_big"/><span data-i18n="popup_size_big"></span></label>
-          <h3 data-i18n="font_size_title"></h3>
-          <label><input type="radio" name="settings_font_size" value="font_size_default"/><span data-i18n="font_size_default"></span></label>
-          <label><input type="radio" name="settings_font_size" value="font_size_large"/><span data-i18n="font_size_large"></span></label>
-          <label><input type="radio" name="settings_font_size" value="font_size_verylarge"/><span data-i18n="font_size_verylarge"></span></label>
-          <h3 data-i18n="panel_position_title"></h3>
-          <label><input type="radio" name="settings_dock" value="dock_popup"/><span data-i18n="use_popup"></span></label>
-          <label><input type="radio" name="settings_dock" value="dock_sidebar"/><span data-i18n="use_sidebar"></span></label>
         </vbox>
       </vbox>
 
@@ -6316,6 +6300,22 @@ select:focus-visible {
         <vbox>
           <button id="button_restart" data-i18n="restart_addon"></button>
           <button id="button_reset" data-i18n="reset_settings"></button>
+        </vbox>
+      </vbox>
+
+      <vbox class="roundedbox">
+        <h2 data-i18n="private_browsing_title"></h2>
+        <vbox>
+          <vbox xalign="start" id="section_no_private_browsing" hidden="true">
+            <p>
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d='M12 8.5V14m0 3.247v-.5m-6.02-5.985C8.608 5.587 9.92 3 12 3s3.393 2.587 6.02 7.762l.327.644c2.182 4.3 3.274 6.45 2.287 8.022C19.648 21 17.208 21 12.327 21h-.654c-4.88 0-7.321 0-8.307-1.572s.105-3.722 2.287-8.022z'/>
+              </svg>
+              <span data-i18n="private_browsing_warning"></span>
+            </p>
+            <button id="button_set_incognito" data-i18n="private_browsing_button"></button>
+          </vbox>
+          <label><input type="checkbox" id="checkbox_show_desktop_notifications_private"/><span data-i18n="private_browsing_notifications"></span></label>
         </vbox>
       </vbox>
 
