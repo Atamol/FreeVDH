@@ -10496,7 +10496,7 @@ function xe(e) {
     .trim()
     .normalize("NFC")
     .replace(/^\.+/gu, "")
-    .replace(/[^\p{L}\p{N}\p{M}\-\s_\.]/gu, "")
+    .replace(/\\/g, "＼").replace(/\//g, "／").replace(/:/g, "：").replace(/\*/g, "＊").replace(/\?/g, "？").replace(/"/g, "＂").replace(/</g, "＜").replace(/>/g, "＞").replace(/\|/g, "｜")
     .replace(/-+/gu, "-")
     .replace(/\s+/gu, " ")
     .replace(/^(\s|-)+/gu, "")
@@ -10531,8 +10531,19 @@ function sd(e, o) {
   (f("%title", s),
     f("%hostname", u),
     f("%selector", i),
-    (l = l || s || u || ""),
-    (l = xe(l).substring(0, t)));
+    (l = l || s || u || ""));
+  if (o.url.isSome()) {
+    let p = o.url.value.href;
+    let h = p.match(/(?:nicovideo\.jp|nico\.ms)\/(?:watch\/)?([a-zA-Z0-9]+)/);
+    if (h) {
+      let suffix = "_" + h[1];
+      let base = xe(s || l);
+      l = base.substring(0, Math.max(0, t - suffix.length)) + suffix;
+    }
+    let q = p.match(/(?:x\.com|twitter\.com)\/([^\/]+)\/status\/(\d+)/);
+    if (q) l = q[1] + "-" + q[2];
+  }
+  (l = xe(l).substring(0, t));
   for (let p of n) l = l.replaceAll(p.from, p.to);
   return ((l = xe(l).substring(0, t)), { basename: l, subdir: a });
 }

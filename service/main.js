@@ -9837,8 +9837,12 @@ function lr(e, t) {
     (l = l || s || u || ""));
   if (t.url.isSome()) {
     let d = t.url.value.href;
-    let f = d.match(/nicovideo\.jp\/watch\/(sm\d+)/);
-    if (f) l = (s || l) + "_" + f[1];
+    let f = d.match(/(?:nicovideo\.jp|nico\.ms)\/(?:watch\/)?([a-zA-Z0-9]+)/);
+    if (f) {
+      let suffix = "_" + f[1];
+      let base = mt(s || l);
+      l = base.substring(0, Math.max(0, r - suffix.length)) + suffix;
+    }
     let g = d.match(/(?:x\.com|twitter\.com)\/([^\/]+)\/status\/(\d+)/);
     if (g) l = g[1] + "-" + g[2];
   }
