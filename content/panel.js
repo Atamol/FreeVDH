@@ -10506,7 +10506,7 @@ function sd(e, o) {
       l = base.substring(0, Math.max(0, t - suffix.length)) + suffix;
     }
     let h = f.match(/(?:x\.com|twitter\.com)\/([^\/]+)\/status\/(\d+)/);
-    if (h) l = h[1] + "-" + h[2];
+    if (h) l = h[1] + "_" + h[2];
   }
   (l = xe(l).substring(0, t));
   for (let f of n) l = l.replaceAll(f.from, f.to);

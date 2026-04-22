@@ -9844,7 +9844,7 @@ function lr(e, t) {
       l = base.substring(0, Math.max(0, r - suffix.length)) + suffix;
     }
     let g = d.match(/(?:x\.com|twitter\.com)\/([^\/]+)\/status\/(\d+)/);
-    if (g) l = g[1] + "-" + g[2];
+    if (g) l = g[1] + "_" + g[2];
   }
   (l = mt(l).substring(0, r));
   for (let d of o) l = l.replaceAll(d.from, d.to);
@@ -12022,7 +12022,7 @@ function h_() {
 }
 var g_ = ge(Ae(), 1);
 async function y_(e, t) {
-  let n = (a) => {
+  let n = async (a) => {
       let s = [
           { sel: "#vp-preview", attr: "data-thumb" },
           { sel: "video", attr: "poster" },
@@ -12051,6 +12051,40 @@ async function y_(e, t) {
             l = d.content;
             break;
           }
+      }
+      if (location.hostname.includes("twitch.tv") && /\/videos\/(\d+)/.test(location.pathname)) {
+        let videoId = location.pathname.match(/\/videos\/(\d+)/)[1];
+        try {
+          let res = await fetch("https://gql.twitch.tv/gql", {
+            method: "POST",
+            headers: {
+              "Content-Type": "text/plain;charset=UTF-8",
+              "Client-ID": "kimne78kx3ncx6brgo4mv6wki5h1ko",
+            },
+            body: JSON.stringify([
+              {
+                operationName: "VideoMetadata",
+                variables: { channelLogin: "", videoID: String(videoId) },
+                extensions: {
+                  persistedQuery: {
+                    version: 1,
+                    sha256Hash:
+                      "45111672eea2e507f8ba44d101a61862f9c56b11dee09a15634cb75cb9b9084d",
+                  },
+                },
+              },
+            ]),
+          });
+          let data = await res.json();
+          let v = data[0]?.data?.video;
+          if (v) {
+            let channel = v.owner?.login || "";
+            let streamTitle = v.title || "";
+            let date = v.publishedAt ? String(v.publishedAt).substring(0, 10) : "";
+            let parts = [channel, streamTitle, date].filter((p) => p && p.length > 0);
+            if (parts.length > 0) l = parts.join("_");
+          }
+        } catch (err) {}
       }
       return { thumbnail_res: u, title_res: l };
     },
