@@ -20,7 +20,11 @@ FreeVDHは，Video DownloadHelper ([Chrome](https://chromewebstore.google.com/de
 - 複数フォーマット・品質でのダウンロード
 - HLS / DASHストリーミングのダウンロード
 - YouTubeを含む多数のサイトに対応
+  - Twitch アーカイブ
+  - ニコ生 タイムシフト
 - BetterSmartNamingによるファイル名の自動整形
+  - Twitch: `[アカウント名_配信タイトル_配信日].mp4`
+  - ニコニコ: `[動画タイトル_動画ID].mp4`，`[動画タイトル_配信ID].mp4`
 - ダウンロード履歴の管理
 - サイドパネル / ポップアップの両モード対応
 - ダウンロード回数・品質の制限なし

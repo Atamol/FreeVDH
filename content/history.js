@@ -10497,6 +10497,7 @@ function xe(e) {
     .normalize("NFC")
     .replace(/^\.+/gu, "")
     .replace(/\\/g, "＼").replace(/\//g, "／").replace(/:/g, "：").replace(/\*/g, "＊").replace(/\?/g, "？").replace(/"/g, "＂").replace(/</g, "＜").replace(/>/g, "＞").replace(/\|/g, "｜")
+    .replace(/[\p{Cc}\p{Cf}]/gu, "")
     .replace(/-+/gu, "-")
     .replace(/\s+/gu, " ")
     .replace(/^(\s|-)+/gu, "")
@@ -10534,11 +10535,13 @@ function sd(e, o) {
     (l = l || s || u || ""));
   if (o.url.isSome()) {
     let p = o.url.value.href;
-    let h = p.match(/(?:nicovideo\.jp|nico\.ms)\/(?:watch\/)?([a-zA-Z0-9]+)/);
-    if (h) {
-      let suffix = "_" + h[1];
-      let base = xe(s || l);
-      l = base.substring(0, Math.max(0, t - suffix.length)) + suffix;
+    if (!p.includes("live.nicovideo.jp")) {
+      let h = p.match(/(?:nicovideo\.jp|nico\.ms)\/(?:watch\/)?([a-zA-Z0-9]+)/);
+      if (h) {
+        let suffix = "_" + h[1];
+        let base = xe(s || l);
+        l = base.substring(0, Math.max(0, t - suffix.length)) + suffix;
+      }
     }
     let q = p.match(/(?:x\.com|twitter\.com)\/([^\/]+)\/status\/(\d+)/);
     if (q) l = q[1] + "_" + q[2];
