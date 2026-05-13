@@ -2010,7 +2010,7 @@ async function lr(e, t, r, a, i, o, n) {
       p = AbortSignal.any([u.signal, n]),
       c = setTimeout(() => u.abort(`Timed out after ${a}`), a);
     try {
-      let s = await fetch(e, { headers: t, cache: l, signal: p });
+      let s = await fetch(e, { headers: t, cache: l, signal: p, credentials: "include" });
       if (s.ok) return s;
       if (s.status == 404 || s.status == 416) return { err_status: s.status };
       d = { err_status: s.status };
@@ -3716,6 +3716,7 @@ var vt = 3e4;
 async function Z(...e) {
   let t;
   try {
+    if (e[1] && typeof e[1] === "object") e[1].credentials = "include";
     t = await fetch(...e);
   } catch (r) {
     return r instanceof DOMException && r.name == "AbortError" ? v(re()) : v(P(r.toString()));
@@ -3972,6 +3973,10 @@ async function K(e, t, r, a) {
     }
     return (l++, y);
   });
+  // drop blank prefix on nicolive timeshift so muxer picks up real codec extradata
+  if (String(e || "").includes("dlive.nicovideo.jp")) {
+    d = d.filter((s) => !s.url.includes("/blank/"));
+  }
   return S(d);
 }
 async function je(e, t, r) {
@@ -4088,6 +4093,11 @@ function xe(e, t, r, a) {
   };
 }
 async function Mt(e, t) {
+  // niconico timeshift uses CMAF where per-segment demux corrupts video, concat-then-mux instead
+  let _urlStr = String(e.url || "");
+  if (_urlStr.includes("dlive.nicovideo.jp")) {
+    return await Mt_cmaf(e, t);
+  }
   let r = await K(e.url, e.headers, t, e.cache);
   if (r.isErr())
     return { aborted_no_partial: !0, download_id: e.download_id, ending_reason: r.error };
@@ -4200,6 +4210,126 @@ async function Mt(e, t) {
       ending_reason: h.isOk() ? "end_of_file" : h.error,
     }
   );
+}
+async function fetchAndConcatStream_cmaf(segList, ctx) {
+  if (segList.length === 0) return v(P("Empty segments"));
+  let parts = [];
+  let totalSize = 0;
+  let initInfo = segList[0].init;
+  if (initInfo) {
+    let r = await qe(initInfo.url, ctx.fetch_args, initInfo.byte_range);
+    if (r.isErr()) return r;
+    let bytes = r.value;
+    if (initInfo.encryption) {
+      let dec = await Dt(bytes, initInfo.encryption.url, initInfo.encryption.iv, ctx.keys, ctx.fetch_args);
+      if (dec.isErr()) return dec;
+      if (dec.value.isErr()) return v(dec.value.error);
+      bytes = dec.value.value;
+    }
+    parts.push(bytes);
+    totalSize += bytes.length;
+  }
+  let segPromises = segList.map((seg, idx) =>
+    ctx.semaphore.runExclusive(async () => {
+      let r = await qe(seg.url, ctx.fetch_args, seg.byte_range);
+      if (r.isErr()) return r;
+      let bytes = r.value;
+      if (seg.encryption) {
+        let dec = await Dt(bytes, seg.encryption.url, seg.encryption.iv, ctx.keys, ctx.fetch_args);
+        if (dec.isErr()) return dec;
+        if (dec.value.isErr()) return v(dec.value.error);
+        bytes = dec.value.value;
+      }
+      ctx.fetch_args.known_segments_url.add(seg.url);
+      return S(bytes);
+    }, 1, segList.length - idx),
+  );
+  let collected = new Array(segList.length);
+  for (let i = 0; i < segPromises.length; i++) {
+    let r = await segPromises[i];
+    if (r.isErr()) return r;
+    collected[i] = r.value;
+    totalSize += r.value.length;
+    ctx.fetch_args.progress_tracker?.set_percent(((i + 1) / segPromises.length) * 100);
+  }
+  for (let b of collected) parts.push(b);
+  let out = new Uint8Array(totalSize);
+  let offset = 0;
+  for (let b of parts) {
+    out.set(b, offset);
+    offset += b.length;
+  }
+  return S(out);
+}
+async function Mt_cmaf(e, t) {
+  let r = await K(e.url, e.headers, t, e.cache);
+  if (r.isErr())
+    return { aborted_no_partial: !0, download_id: e.download_id, ending_reason: r.error };
+  let videoSegs = r.value;
+  videoSegs.length == 0 && M("Video Media Manifest does not contain video URLs");
+  let r2 = await K(e.url_audio, e.headers, t, e.cache);
+  if (r2.isErr())
+    return { aborted_no_partial: !0, download_id: e.download_id, ending_reason: r2.error };
+  let audioSegs = r2.value;
+  audioSegs.length == 0 && M("Audio Media Manifest does not contain audio URLs");
+  let n = xe(e, t, videoSegs.length + audioSegs.length, !0);
+  await te.open(n.output_filename);
+  let videoData = await fetchAndConcatStream_cmaf(videoSegs, n);
+  if (videoData.isErr())
+    return { aborted_no_partial: !0, download_id: e.download_id, ending_reason: videoData.error };
+  let audioData = await fetchAndConcatStream_cmaf(audioSegs, n);
+  if (audioData.isErr())
+    return { aborted_no_partial: !0, download_id: e.download_id, ending_reason: audioData.error };
+  let vTmp = `${crypto.randomUUID()}.mp4`;
+  let aTmp = `${crypto.randomUUID()}.mp4`;
+  await g.writeFile(vTmp, videoData.value);
+  await g.writeFile(aTmp, audioData.value);
+  let [vCtx, vStreams] = await g.ff_init_demuxer_file(vTmp);
+  let vStream = vStreams.find((s) => s.codec_type === g.AVMEDIA_TYPE_VIDEO);
+  if (!vStream) M("No video stream found in concatenated CMAF");
+  let [aCtx, aStreams] = await g.ff_init_demuxer_file(aTmp);
+  let aStream = aStreams.find((s) => s.codec_type === g.AVMEDIA_TYPE_AUDIO);
+  if (!aStream) M("No audio stream found in concatenated CMAF");
+  let pkt = await g.av_packet_alloc();
+  let [, vPacketsAll] = await g.ff_read_frame_multi(vCtx, pkt);
+  let [, aPacketsAll] = await g.ff_read_frame_multi(aCtx, pkt);
+  let vPackets = vPacketsAll[vStream.index] || [];
+  let aPackets = aPacketsAll[aStream.index] || [];
+  for (let p of aPackets) p.stream_index = 0;
+  for (let p of vPackets) p.stream_index = 1;
+  let fmtName = e.muxer == "mkv" ? "matroska" : e.muxer;
+  let muxOpts = {
+    filename: n.output_filename,
+    open: !0,
+    codecpars: !0,
+    device: !0,
+    format_name: fmtName,
+  };
+  let muxParams = [
+    [aStream.codecpar, aStream.time_base_num, aStream.time_base_den],
+    [vStream.codecpar, vStream.time_base_num, vStream.time_base_den],
+  ];
+  let [mCtx, , mFd] = await g.ff_init_muxer(muxOpts, muxParams);
+  let setOpt = await g.av_opt_set(mCtx, "avoid_negative_ts", "make_zero", 0);
+  pe(g, setOpt);
+  let hdrErr = await g.avformat_write_header(mCtx, 0);
+  me(g, hdrErr);
+  await g.ff_write_multi(mCtx, pkt, aPackets);
+  await g.ff_write_multi(mCtx, pkt, vPackets);
+  await g.avformat_close_input_js(vCtx);
+  await g.avformat_close_input_js(aCtx);
+  await g.av_packet_free_js(pkt);
+  await g.unlink(vTmp);
+  await g.unlink(aTmp);
+  let trailerRes = await je(mCtx, mFd, n.output_filename);
+  trailerRes.isErr() && M(trailerRes.error);
+  return {
+    aborted_no_partial: !1,
+    internal_filename: trailerRes.value,
+    internal_bloburl: await C(e, trailerRes.value),
+    download_id: e.download_id,
+    ending_reason: "end_of_file",
+  };
 }
 async function Ft(e, t) {
   let r = await K(e.url, e.headers, t, e.cache);

@@ -8973,7 +8973,7 @@ async function $m(e) {
     r = [...r, ...l];
     let c;
     try {
-      c = await fetch(s, { headers: e.headers });
+      c = await fetch(s, { headers: e.headers, credentials: "include" });
     } catch (m) {
       return (
         console.warn(`Unable to fetch m3u8 for creating headers. Continuing anyways. Error: ${m}`),
@@ -9800,6 +9800,7 @@ function mt(e) {
     .normalize("NFC")
     .replace(/^\.+/gu, "")
     .replace(/\\/g, "＼").replace(/\//g, "／").replace(/:/g, "：").replace(/\*/g, "＊").replace(/\?/g, "？").replace(/"/g, "＂").replace(/</g, "＜").replace(/>/g, "＞").replace(/\|/g, "｜")
+    .replace(/[\p{Cc}\p{Cf}]/gu, "")
     .replace(/-+/gu, "-")
     .replace(/\s+/gu, " ")
     .replace(/^(\s|-)+/gu, "")
@@ -9837,11 +9838,13 @@ function lr(e, t) {
     (l = l || s || u || ""));
   if (t.url.isSome()) {
     let d = t.url.value.href;
-    let f = d.match(/(?:nicovideo\.jp|nico\.ms)\/(?:watch\/)?([a-zA-Z0-9]+)/);
-    if (f) {
-      let suffix = "_" + f[1];
-      let base = mt(s || l);
-      l = base.substring(0, Math.max(0, r - suffix.length)) + suffix;
+    if (!d.includes("live.nicovideo.jp")) {
+      let f = d.match(/(?:nicovideo\.jp|nico\.ms)\/(?:watch\/)?([a-zA-Z0-9]+)/);
+      if (f) {
+        let suffix = "_" + f[1];
+        let base = mt(s || l);
+        l = base.substring(0, Math.max(0, r - suffix.length)) + suffix;
+      }
     }
     let g = d.match(/(?:x\.com|twitter\.com)\/([^\/]+)\/status\/(\d+)/);
     if (g) l = g[1] + "_" + g[2];
@@ -10343,7 +10346,7 @@ function pt(e, t, n, i, r, o, a, s) {
     throw "Missing playlist_entry";
   } else throw new Error("Unreachable");
 }
-var Gy = ["loom.com"],
+var Gy = ["loom.com", "dlive.nicovideo.jp"],
   Wy = ["pandavideo.com"],
   Qy = ["soundcloud.com"],
   Jy = ["taiav.com"],
@@ -11706,7 +11709,7 @@ async function m_(e, t, n) {
   let o = r.value;
   Ga(o) && (o.search = "");
   let a = await ct([o.href], i),
-    s = await fetch(o, { headers: i });
+    s = await fetch(o, { headers: i, credentials: "include" });
   if ((dt(a), !s.ok)) return !1;
   let u = await s.text(),
     l = Tm(u, o, z, Mi(o), Ga(o)),
@@ -11782,7 +11785,7 @@ async function zb(e, t, n, i) {
   if (o.isNone()) return !1;
   let a = o.value,
     s = await ct([a.href], r),
-    u = await fetch(a, { headers: r });
+    u = await fetch(a, { headers: r, credentials: "include" });
   if ((dt(s), !u.ok)) return !1;
   let l = await u.text(),
     c = c_(l);
@@ -12051,6 +12054,33 @@ async function y_(e, t) {
             l = d.content;
             break;
           }
+      }
+      if (location.hostname === "live.nicovideo.jp" && /\/watch\/lv\d+/.test(location.pathname)) {
+        try {
+          let el = document.getElementById("embedded-data");
+          if (el) {
+            let raw = el.getAttribute("data-props");
+            if (raw) {
+              let data = JSON.parse(raw);
+              let prog = data.program || {};
+              let supplier = prog.supplier || {};
+              let social = data.socialGroup || {};
+              let broadcaster = supplier.name || (social.type === "channel" && social.name) || "";
+              let title = prog.title || "";
+              let startUnix = prog.beginTime ?? prog.openTime ?? null;
+              let date = "";
+              if (startUnix) {
+                let d = new Date(startUnix * 1000);
+                let y = d.getFullYear();
+                let m = String(d.getMonth() + 1).padStart(2, "0");
+                let dd = String(d.getDate()).padStart(2, "0");
+                date = `${y}-${m}-${dd}`;
+              }
+              let parts = [broadcaster, title, date].filter((p) => p && p.length > 0);
+              if (parts.length > 0) l = parts.join("_");
+            }
+          }
+        } catch (err) {}
       }
       if (location.hostname.includes("twitch.tv") && /\/videos\/(\d+)/.test(location.pathname)) {
         let videoId = location.pathname.match(/\/videos\/(\d+)/)[1];
