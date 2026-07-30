@@ -1,6 +1,6 @@
-# FreeVDH
+### ![en](https://flagcdn.com/20x15/gb.png) [English Here](README.en.md)
 
-### [English Version Here (README.en.md)](README.en.md)
+# FreeVDH
 
 ウェブから動画をダウンロードするためのブラウザ拡張機能．
 
@@ -18,21 +18,21 @@ FreeVDHは，Video DownloadHelper ([Chrome](https://chromewebstore.google.com/de
 
 - ウェブページ上の動画を自動検出
 - 複数フォーマット・品質でのダウンロード
-- HLS / DASHストリーミングのダウンロード
+- HLS，DASHストリーミングのダウンロード
 - YouTubeを含む多数のサイトに対応
-  - Twitch アーカイブ
-  - ニコ生 タイムシフト
+  - Twitchアーカイブ
+  - ニコ生タイムシフト
 - BetterSmartNamingによるファイル名の自動整形
   - Twitch: `[アカウント名_配信タイトル_配信日].mp4`
-  - ニコニコ: `[動画タイトル_動画ID].mp4`，`[動画タイトル_配信ID].mp4`
+  - ニコニコ: `[動画タイトル_動画ID].mp4`，`[投稿者_配信タイトル_配信年月日].mp4`
 - ダウンロード履歴の管理
-- サイドパネル / ポップアップの両モード対応
+- サイドパネル，ポップアップの両モード対応
 - ダウンロード回数・品質の制限なし
 
 ## インストール
 
 1. このリポジトリをクローンまたはダウンロード
-2. Chrome で `chrome://extensions` を開く
+2. Chromeで`chrome://extensions`を開く
 3. 「デベロッパーモード」を有効にする
 4. 「パッケージ化されていない拡張機能を読み込む」をクリックし，このフォルダを選択
 

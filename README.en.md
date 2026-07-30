@@ -1,6 +1,6 @@
-# FreeVDH
+### ![ja](https://flagcdn.com/20x15/jp.png) [日本語版はこちら](README.md)
 
-### [日本語版はこちら (README.md)](README.md)
+# FreeVDH
 
 A browser extension for downloading videos from the web.
 
@@ -20,7 +20,11 @@ FreeVDH is an open-source project based on a customized version of Video Downloa
 - Download in multiple formats and qualities
 - HLS / DASH streaming download
 - Support for numerous sites including YouTube
+  - Twitch VOD
+  - Niconico Live timeshift
 - BetterSmartNaming for automatic file naming
+  - Twitch: `[account_stream-title_date].mp4`
+  - Niconico: `[video-title_video-id].mp4`, `[broadcaster_stream-title_date].mp4`
 - Download history management
 - Side panel / popup dual-mode support
 - No download limits or quality restrictions
