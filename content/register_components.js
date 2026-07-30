@@ -10840,6 +10840,8 @@ function ad(e, o) {
     }
     let h = f.match(/(?:x\.com|twitter\.com)\/([^\/]+)\/status\/(\d+)/);
     if (h) l = h[1] + "_" + h[2];
+    let tk = f.match(/tiktok\.com\/@([^\/]+)\/(?:video|photo)\/(\d+)/);
+    if (tk) l = tk[1] + "_" + tk[2];
   }
   (l = Se(l).substring(0, t));
   for (let f of n) l = l.replaceAll(f.from, f.to);
@@ -11316,8 +11318,9 @@ function Or(e, o) {
   return 0;
 }
 function cp(e) {
-  let o = [];
-  if ((o.push(e.demuxer.toUpperCase()), e.quality.size.isSome())) {
+  let o = [],
+    t = e.demuxer.toUpperCase();
+  if ((e.audio_codec && (t += ` / ${e.audio_codec}`), o.push(t), e.quality.size.isSome())) {
     let { width: r, height: i } = e.quality.size.value;
     o.push(`${r}x${i}`);
   }
@@ -11429,12 +11432,12 @@ function mp(e, o, r, i, t, n, a, s) {
         subdir: n,
         save_as: r,
         will_use_jsfetch: !0,
-        muxer: "mp3",
+        muxer: "mp4",
         strategy: "mpd_audio_only",
         url: e.master_url,
         entry: p,
         duration: e.duration,
-        extension: "mp3",
+        extension: "m4a",
         is_youtube: e.is_youtube,
         throttle: s,
         cache: e.cache,
@@ -11457,11 +11460,21 @@ function mp(e, o, r, i, t, n, a, s) {
         cache: e.cache,
       };
 }
+function audioExtFor(e) {
+  return e == "AAC"
+    ? { muxer: "mp4", extension: "m4a" }
+    : e == "Opus"
+      ? { muxer: "webm", extension: "opus" }
+      : e == "Vorbis"
+        ? { muxer: "webm", extension: "webm" }
+        : { muxer: "mp3", extension: "mp3" };
+}
 function pp(e, o, r, i, t, n, a, s) {
   t = Se(t);
   let u = `download_${crypto.randomUUID()}`,
     l = e.playlist[a],
-    p = Ve(e.sent_headers);
+    p = Ve(e.sent_headers),
+    ye_ = audioExtFor(l.audio_codec);
   if (l.av.video == !1)
     return {
       download_id: u,
@@ -11471,10 +11484,10 @@ function pp(e, o, r, i, t, n, a, s) {
       save_as: r,
       will_use_jsfetch: !1,
       strategy: "youtube_audio_only",
-      muxer: "mp3",
+      muxer: ye_.muxer,
       url: l.av.audio.url,
       content_length: l.av.audio.content_length,
-      extension: "mp3",
+      extension: ye_.extension,
       is_youtube: e.is_youtube,
       throttle: s,
       cache: e.cache,
@@ -11489,10 +11502,10 @@ function pp(e, o, r, i, t, n, a, s) {
           save_as: r,
           will_use_jsfetch: !1,
           strategy: "youtube_audio_only",
-          muxer: "mp3",
+          muxer: ye_.muxer,
           url: l.av.audio.url,
           content_length: l.av.audio.content_length,
-          extension: "mp3",
+          extension: ye_.extension,
           is_youtube: e.is_youtube,
           throttle: s,
           cache: e.cache,
@@ -11505,10 +11518,10 @@ function pp(e, o, r, i, t, n, a, s) {
           save_as: r,
           will_use_jsfetch: !1,
           strategy: "youtube_audio_only",
-          muxer: "mp3",
+          muxer: ye_.muxer,
           url: l.av.video.url,
           content_length: l.av.video.content_length,
-          extension: "mp3",
+          extension: ye_.extension,
           is_youtube: e.is_youtube,
           throttle: s,
           cache: e.cache,
@@ -11569,9 +11582,9 @@ function fp(e, o, r, i, t, n, a, s) {
       save_as: r,
       will_use_jsfetch: !1,
       strategy: "m3u8_audio_only",
-      muxer: "mp3",
+      muxer: "mp4",
       url: l.av.audio,
-      extension: "mp3",
+      extension: "m4a",
       is_youtube: e.is_youtube,
       throttle: s,
       cache: e.cache,
@@ -11587,9 +11600,9 @@ function fp(e, o, r, i, t, n, a, s) {
           save_as: r,
           will_use_jsfetch: !1,
           strategy: "m3u8_audio_only",
-          muxer: "mp3",
+          muxer: "mp4",
           url: l.av.audio,
-          extension: "mp3",
+          extension: "m4a",
           is_youtube: e.is_youtube,
           throttle: s,
           cache: e.cache,
@@ -11603,9 +11616,9 @@ function fp(e, o, r, i, t, n, a, s) {
           save_as: r,
           will_use_jsfetch: !1,
           strategy: "m3u8_audio_only",
-          muxer: "mp3",
+          muxer: "mp4",
           url: l.av.video,
-          extension: "mp3",
+          extension: "m4a",
           is_youtube: e.is_youtube,
           throttle: s,
           cache: e.cache,
@@ -11664,10 +11677,10 @@ function hp(e, o, r, i, t, n, a) {
       download_id: s,
       headers: u,
       strategy: "m3u8_audio_only",
-      muxer: "mp3",
+      muxer: "mp4",
       url: l,
       good_basename: t,
-      extension: "mp3",
+      extension: "m4a",
       is_youtube: e.is_youtube,
       throttle: a,
       cache: e.cache,
@@ -11708,8 +11721,8 @@ function gp(e, o, r, i, t, n, a, s) {
       strategy: "http_strip_audio_jsfetch",
       url: l.av.video,
       good_basename: t,
-      muxer: "mp3",
-      extension: "mp3",
+      muxer: "mp4",
+      extension: "m4a",
       is_youtube: e.is_youtube,
       size: l.size,
       throttle: s,
@@ -11824,55 +11837,7 @@ var K = class extends N {
     ((this.action = t.default_action), this.updateActionButtons(), this.setupMediaSelector());
     let a = this.media.type != "http_playlist" || this.media.extension == "mp4";
     (this.menu_options.invalidateState([
-      {
-        id: "menu_set_default_action_download",
-        key: "download_audio_and_video_menu",
-        enabled: !0,
-        onclick: () => s("download"),
-      },
-      kt,
-      {
-        id: "menu_do_download_as",
-        key: "download_as_button_and_menu",
-        enabled: !0,
-        onclick: () => this.doDownloadAs(),
-      },
-      {
-        id: "menu_set_default_action_download_as",
-        key: "always_download_as_menu",
-        enabled: !0,
-        onclick: () => s("download_as"),
-      },
-      kt,
-      {
-        id: "menu_do_audio_only",
-        key: "download_audio_only_menu",
-        enabled: a,
-        onclick: () => this.doDownloadAudio(),
-      },
-      {
-        id: "menu_set_default_action_audio_only",
-        key: "audio_only_for_this_website",
-        enabled: a,
-        onclick: () => s("download_audio"),
-      },
-      kt,
       { id: "menu_do_copy_link", key: "copy_url", enabled: !0, onclick: () => this.doCopyLink() },
-      {
-        id: "menu_set_default_action_copy",
-        key: "always_copy_url",
-        enabled: !0,
-        onclick: () => s("copy"),
-      },
-      kt,
-      {
-        id: "menu_show_smartnaming",
-        text: "Smartnaming",
-        enabled: !0,
-        onclick: () => {
-          Hs.default.tabs.create({ url: "/content/smartnaming.html" });
-        },
-      },
       {
         id: "menu_do_details",
         key: "details",
@@ -11954,7 +11919,7 @@ var K = class extends N {
       R(this.action_copy, this.action == "copy"),
       R(this.action_download, this.action == "download"),
       R(this.action_download_as, this.action == "download_as"),
-      R(this.action_download_audio, this.action == "download_audio"));
+      j(this.action_download_audio));
   }
   setupFilenameEditor() {
     let r = !1;
@@ -12106,15 +12071,18 @@ var fe = class extends N {
         this.browser_download_id && st.default.downloads.show(this.browser_download_id);
       }));
     let o = () => {
-        (this.classList.add("disappearing"),
-          this.browser_download_id &&
-            I({ name: "rm_download", data: { browser_download_id: this.browser_download_id } }));
-      },
-      r = () => {
+      (this.classList.add("disappearing"),
         this.browser_download_id &&
-          I({ name: "retry_download", data: { media_hash: this.media_hash, tab_id: this.tab_id } });
-      };
-    ((this.button_rm.onclick = o), (this.button_retry.onclick = r));
+          I({ name: "rm_download", data: { browser_download_id: this.browser_download_id } }));
+    };
+    // clone the media under a fresh hash, then drop the finished card so it reads as going back
+    let reselect_ = () => {
+      this.browser_download_id &&
+        (I({ name: "retry_download", data: { media_hash: this.media_hash, tab_id: this.tab_id } }),
+        I({ name: "dismiss_media", data: { media_hash: this.media_hash, tab_id: this.tab_id } }));
+    };
+    ((this.button_rm.onclick = o),
+      this.button_reselect && (this.button_reselect.onclick = reselect_));
   }
   onPersistentChanged() {}
   onStateChanged(o) {
@@ -12146,7 +12114,7 @@ var fe = class extends N {
   c([_(HTMLButtonElement)], fe.prototype, "button_not_playing", 2),
   c([_(HTMLButtonElement)], fe.prototype, "button_dir", 2),
   c([_(HTMLButtonElement)], fe.prototype, "button_rm", 2),
-  c([_(HTMLButtonElement)], fe.prototype, "button_retry", 2),
+  c([_(HTMLButtonElement)], fe.prototype, "button_reselect", 2),
   c([_(be)], fe.prototype, "button_origin", 2));
 var Oe = class extends N {
   constructor() {

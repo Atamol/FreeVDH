@@ -514,6 +514,11 @@ select {
   padding-right: 0;
 }
 
+option {
+  padding-inline: var(--spacing-large);
+  text-align: left;
+}
+
 com-native-menu, button, select {
   user-select: none;
   white-space: nowrap;
@@ -1211,6 +1216,11 @@ stack > * {
 select {
   padding-left: 0;
   padding-right: 0;
+}
+
+option {
+  padding-inline: var(--spacing-large);
+  text-align: left;
 }
 
 com-native-menu, button, select {
@@ -2004,6 +2014,11 @@ select {
   padding-right: 0;
 }
 
+option {
+  padding-inline: var(--spacing-large);
+  text-align: left;
+}
+
 com-native-menu, button, select {
   user-select: none;
   white-space: nowrap;
@@ -2675,6 +2690,11 @@ select {
   padding-right: 0;
 }
 
+option {
+  padding-inline: var(--spacing-large);
+  text-align: left;
+}
+
 com-native-menu, button, select {
   user-select: none;
   white-space: nowrap;
@@ -3340,6 +3360,11 @@ select {
   padding-right: 0;
 }
 
+option {
+  padding-inline: var(--spacing-large);
+  text-align: left;
+}
+
 com-native-menu, button, select {
   user-select: none;
   white-space: nowrap;
@@ -3997,6 +4022,11 @@ select {
   padding-right: 0;
 }
 
+option {
+  padding-inline: var(--spacing-large);
+  text-align: left;
+}
+
 com-native-menu, button, select {
   user-select: none;
   white-space: nowrap;
@@ -4638,6 +4668,11 @@ stack > * {
 select {
   padding-left: 0;
   padding-right: 0;
+}
+
+option {
+  padding-inline: var(--spacing-large);
+  text-align: left;
 }
 
 com-native-menu, button, select {
@@ -5295,6 +5330,11 @@ select {
   padding-right: 0;
 }
 
+option {
+  padding-inline: var(--spacing-large);
+  text-align: left;
+}
+
 com-native-menu, button, select {
   user-select: none;
   white-space: nowrap;
@@ -5949,6 +5989,11 @@ select {
   padding-right: 0;
 }
 
+option {
+  padding-inline: var(--spacing-large);
+  text-align: left;
+}
+
 com-native-menu, button, select {
   user-select: none;
   white-space: nowrap;
@@ -6323,9 +6368,9 @@ select:focus-visible {
 }
 
 .media_hbox {
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: var(--spacing-small);
-  align-items: stretch;
+  align-items: center;
   justify-content: flex-end;
 }
 
@@ -6351,31 +6396,23 @@ select:focus-visible {
   }
 }
 
+
 #box_combo > button > svg {
   width: 12px;
   height: 12px;
 }
 
+#box_combo {
+  gap: var(--spacing-small);
+}
+
 #box_combo > * {
   margin: 0;
+  padding-inline: var(--spacing-small);
   font-weight: 600;
-  border-radius: 0;
+  border-radius: 100px;
   border-width: 0;
   color: var(--theme-colored-fg);
-  border-top-left-radius: 100px;
-  border-bottom-left-radius: 100px;
-}
-
-#box_combo > *:last-child {
-  border-top-right-radius: 100px;
-  border-bottom-right-radius: 100px;
-}
-
-#box_combo > *:last-child:not(:first-child) {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  margin-left: calc(-2 * var(--hardware-pixel));
-  border-left-width: calc(2 * var(--hardware-pixel));
 }
   *, *::before, *::after {
   box-sizing: border-box;
@@ -6839,6 +6876,11 @@ stack > * {
 select {
   padding-left: 0;
   padding-right: 0;
+}
+
+option {
+  padding-inline: var(--spacing-large);
+  text-align: left;
 }
 
 com-native-menu, button, select {
@@ -7505,6 +7547,11 @@ select {
   padding-right: 0;
 }
 
+option {
+  padding-inline: var(--spacing-large);
+  text-align: left;
+}
+
 com-native-menu, button, select {
   user-select: none;
   white-space: nowrap;
@@ -7692,9 +7739,9 @@ select:focus-visible {
 }
 
 .media_hbox {
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: var(--spacing-small);
-  align-items: stretch;
+  align-items: center;
   justify-content: flex-end;
 }
 
@@ -7720,31 +7767,22 @@ select:focus-visible {
   }
 }
 
+
 #box_combo > button > svg {
   width: 12px;
   height: 12px;
 }
 
+#box_combo {
+  gap: var(--spacing-small);
+}
+
 #box_combo > * {
   margin: 0;
   font-weight: 600;
-  border-radius: 0;
+  border-radius: 100px;
   border-width: 0;
   color: var(--theme-colored-fg);
-  border-top-left-radius: 100px;
-  border-bottom-left-radius: 100px;
-}
-
-#box_combo > *:last-child {
-  border-top-right-radius: 100px;
-  border-bottom-right-radius: 100px;
-}
-
-#box_combo > *:last-child:not(:first-child) {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  margin-left: calc(-2 * var(--hardware-pixel));
-  border-left-width: calc(2 * var(--hardware-pixel));
 }
   *, *::before, *::after {
   box-sizing: border-box;
@@ -8208,6 +8246,11 @@ stack > * {
 select {
   padding-left: 0;
   padding-right: 0;
+}
+
+option {
+  padding-inline: var(--spacing-large);
+  text-align: left;
 }
 
 com-native-menu, button, select {
@@ -8356,7 +8399,7 @@ select:focus-visible {
 
   #box_combo > #menu_options > svg {
     justify-self: center;
-    margin-right: var(--spacing-medium);
+    margin: 0;
   }
 
   #span_directory {
@@ -8397,6 +8440,28 @@ select:focus-visible {
 
   #button_rename_2[disabled] {
     transform: scale(0.8);
+  }
+
+  #button_rename_1 {
+    border-radius: 100px;
+    flex-shrink: 0;
+    align-self: stretch;
+    aspect-ratio: 1;
+    width: auto;
+    height: auto;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    --theme-control-bg-hover: light-dark(var(--sky-500), var(--sky-600));
+    --theme-control-bg: light-dark(var(--sky-600), var(--sky-500));
+    --theme-control-border: var(--sky-800);
+    color: var(--theme-colored-fg);
+  }
+
+  #button_rename_1 > svg {
+    width: 16px;
+    height: 16px;
   }
 
   @media(max-width: 440px) {
@@ -8503,9 +8568,9 @@ select:focus-visible {
 }
 
 .media_hbox {
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: var(--spacing-small);
-  align-items: stretch;
+  align-items: center;
   justify-content: flex-end;
 }
 
@@ -8531,31 +8596,22 @@ select:focus-visible {
   }
 }
 
+
 #box_combo > button > svg {
   width: 12px;
   height: 12px;
 }
 
+#box_combo {
+  gap: var(--spacing-small);
+}
+
 #box_combo > * {
   margin: 0;
   font-weight: 600;
-  border-radius: 0;
+  border-radius: 100px;
   border-width: 0;
   color: var(--theme-colored-fg);
-  border-top-left-radius: 100px;
-  border-bottom-left-radius: 100px;
-}
-
-#box_combo > *:last-child {
-  border-top-right-radius: 100px;
-  border-bottom-right-radius: 100px;
-}
-
-#box_combo > *:last-child:not(:first-child) {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  margin-left: calc(-2 * var(--hardware-pixel));
-  border-left-width: calc(2 * var(--hardware-pixel));
 }
   *, *::before, *::after {
   box-sizing: border-box;
@@ -9019,6 +9075,11 @@ stack > * {
 select {
   padding-left: 0;
   padding-right: 0;
+}
+
+option {
+  padding-inline: var(--spacing-large);
+  text-align: left;
 }
 
 com-native-menu, button, select {
@@ -9273,9 +9334,9 @@ select:focus-visible {
 }
 
 .media_hbox {
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: var(--spacing-small);
-  align-items: stretch;
+  align-items: center;
   justify-content: flex-end;
 }
 
@@ -9301,31 +9362,22 @@ select:focus-visible {
   }
 }
 
+
 #box_combo > button > svg {
   width: 12px;
   height: 12px;
 }
 
+#box_combo {
+  gap: var(--spacing-small);
+}
+
 #box_combo > * {
   margin: 0;
   font-weight: 600;
-  border-radius: 0;
+  border-radius: 100px;
   border-width: 0;
   color: var(--theme-colored-fg);
-  border-top-left-radius: 100px;
-  border-bottom-left-radius: 100px;
-}
-
-#box_combo > *:last-child {
-  border-top-right-radius: 100px;
-  border-bottom-right-radius: 100px;
-}
-
-#box_combo > *:last-child:not(:first-child) {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  margin-left: calc(-2 * var(--hardware-pixel));
-  border-left-width: calc(2 * var(--hardware-pixel));
 }
   *, *::before, *::after {
   box-sizing: border-box;
@@ -9791,6 +9843,11 @@ select {
   padding-right: 0;
 }
 
+option {
+  padding-inline: var(--spacing-large);
+  text-align: left;
+}
+
 com-native-menu, button, select {
   user-select: none;
   white-space: nowrap;
@@ -9948,7 +10005,7 @@ select:focus-visible {
     font-style: normal;
   }
 
-  :host(.collapsed) #button_retry {
+  :host(.collapsed) #button_reselect {
     display: none;
   }
 
@@ -9962,7 +10019,7 @@ select:focus-visible {
 
   /* Collapse buttons in pill shape */
 
-  :host(.collapsed) .media_hbox > button:nth-of-type(2),
+  :host(.collapsed) #button_rm,
   :host(:not(.collapsed)) .media_hbox > button:nth-of-type(1) {
     border-radius: 100px 0 0 100px;
   }
@@ -9991,10 +10048,10 @@ select:focus-visible {
       <hbox flex="1">
         <com-media-button-origin id="button_origin"></com-media-button-origin>
       </hbox>
-      <button id="button_retry" data-i18n-tooltip="retry_download_button_tooltip">
+      <button id="button_reselect" data-i18n-tooltip="back">
         <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"></path>
-          <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"></path>
+          <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"></path>
         </svg>
       </button>
       <button id="button_rm" data-i18n-tooltip="delete_file_button_tooltip">
@@ -10491,6 +10548,11 @@ select {
   padding-right: 0;
 }
 
+option {
+  padding-inline: var(--spacing-large);
+  text-align: left;
+}
+
 com-native-menu, button, select {
   user-select: none;
   white-space: nowrap;
@@ -10632,6 +10694,7 @@ select:focus-visible {
   #face {
     gap: var(--spacing-medium);
     font-family: monospace;
+    padding-inline: var(--spacing-small) var(--spacing-medium);
   }
 
   #span_demuxer {
@@ -11148,6 +11211,11 @@ stack > * {
 select {
   padding-left: 0;
   padding-right: 0;
+}
+
+option {
+  padding-inline: var(--spacing-large);
+  text-align: left;
 }
 
 com-native-menu, button, select {
@@ -11794,6 +11862,11 @@ select {
   padding-right: 0;
 }
 
+option {
+  padding-inline: var(--spacing-large);
+  text-align: left;
+}
+
 com-native-menu, button, select {
   user-select: none;
   white-space: nowrap;
@@ -12423,6 +12496,11 @@ stack > * {
 select {
   padding-left: 0;
   padding-right: 0;
+}
+
+option {
+  padding-inline: var(--spacing-large);
+  text-align: left;
 }
 
 com-native-menu, button, select {
