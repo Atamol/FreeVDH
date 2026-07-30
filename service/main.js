@@ -7653,6 +7653,19 @@ function vi(e) {
   for (let t of hy) if (t.mime_reg.test(e)) return L(t.demuxer);
   return z;
 }
+function audioCodecName(e) {
+  for (let t of gy) if (t.mime_reg.test(e)) return L(t.codec);
+  return z;
+}
+function audioExtFor(e) {
+  return e == "AAC"
+    ? { muxer: "mp4", extension: "m4a" }
+    : e == "Opus"
+      ? { muxer: "webm", extension: "opus" }
+      : e == "Vorbis"
+        ? { muxer: "webm", extension: "webm" }
+        : { muxer: "mp3", extension: "mp3" };
+}
 function Sm(e) {
   for (let t of gy) if (t.mime_reg.test(e)) return L(t.demuxer);
   return z;
@@ -8915,12 +8928,13 @@ function Tm(e, t, n, i = !1, r = !1) {
       (_ = L({ height: l.attributes.RESOLUTION.height, width: l.attributes.RESOLUTION.width })),
       l.attributes.BANDWIDTH && (g = L(l.attributes.BANDWIDTH)));
     let m = { size: _, bitrate: g },
-      D = d.value;
+      D = d.value,
+      ne = l.attributes.CODECS ? audioCodecName(l.attributes.CODECS).unwrapOr(void 0) : void 0;
     if ((i ? (D.search = Pa(D.searchParams, t.searchParams)) : r && (D.search = ""), f.isSome())) {
       let A = f.value;
       (i ? (A.search = Pa(D.searchParams, t.searchParams)) : r && (A.search = ""),
-        u.push({ demuxer: c, quality: m, av: { video: D, audio: A } }));
-    } else u.push({ demuxer: c, quality: m, av: { video: D, audio: !1 } });
+        u.push({ demuxer: c, quality: m, audio_codec: ne, av: { video: D, audio: A } }));
+    } else u.push({ demuxer: c, quality: m, audio_codec: ne, av: { video: D, audio: !1 } });
   }
   return ((u = xi(u)), Di(u) ? B(u) : R("Empty playlist"));
 }
@@ -9848,6 +9862,8 @@ function lr(e, t) {
     }
     let g = d.match(/(?:x\.com|twitter\.com)\/([^\/]+)\/status\/(\d+)/);
     if (g) l = g[1] + "_" + g[2];
+    let tk = d.match(/tiktok\.com\/@([^\/]+)\/(?:video|photo)\/(\d+)/);
+    if (tk) l = tk[1] + "_" + tk[2];
   }
   (l = mt(l).substring(0, r));
   for (let d of o) l = l.replaceAll(d.from, d.to);
@@ -9985,12 +10001,12 @@ function By(e, t, n, i, r, o, a, s) {
         subdir: o,
         save_as: n,
         will_use_jsfetch: !0,
-        muxer: "mp3",
+        muxer: "mp4",
         strategy: "mpd_audio_only",
         url: e.master_url,
         entry: c,
         duration: e.duration,
-        extension: "mp3",
+        extension: "m4a",
         is_youtube: e.is_youtube,
         throttle: s,
         cache: e.cache,
@@ -10017,7 +10033,8 @@ function Vy(e, t, n, i, r, o, a, s) {
   r = mt(r);
   let u = `download_${crypto.randomUUID()}`,
     l = e.playlist[a],
-    c = Ne(e.sent_headers);
+    c = Ne(e.sent_headers),
+    ye_ = audioExtFor(l.audio_codec);
   if (l.av.video == !1)
     return {
       download_id: u,
@@ -10027,10 +10044,10 @@ function Vy(e, t, n, i, r, o, a, s) {
       save_as: n,
       will_use_jsfetch: !1,
       strategy: "youtube_audio_only",
-      muxer: "mp3",
+      muxer: ye_.muxer,
       url: l.av.audio.url,
       content_length: l.av.audio.content_length,
-      extension: "mp3",
+      extension: ye_.extension,
       is_youtube: e.is_youtube,
       throttle: s,
       cache: e.cache,
@@ -10045,10 +10062,10 @@ function Vy(e, t, n, i, r, o, a, s) {
           save_as: n,
           will_use_jsfetch: !1,
           strategy: "youtube_audio_only",
-          muxer: "mp3",
+          muxer: ye_.muxer,
           url: l.av.audio.url,
           content_length: l.av.audio.content_length,
-          extension: "mp3",
+          extension: ye_.extension,
           is_youtube: e.is_youtube,
           throttle: s,
           cache: e.cache,
@@ -10061,10 +10078,10 @@ function Vy(e, t, n, i, r, o, a, s) {
           save_as: n,
           will_use_jsfetch: !1,
           strategy: "youtube_audio_only",
-          muxer: "mp3",
+          muxer: ye_.muxer,
           url: l.av.video.url,
           content_length: l.av.video.content_length,
-          extension: "mp3",
+          extension: ye_.extension,
           is_youtube: e.is_youtube,
           throttle: s,
           cache: e.cache,
@@ -10125,9 +10142,9 @@ function qy(e, t, n, i, r, o, a, s) {
       save_as: n,
       will_use_jsfetch: !1,
       strategy: "m3u8_audio_only",
-      muxer: "mp3",
+      muxer: "mp4",
       url: l.av.audio,
-      extension: "mp3",
+      extension: "m4a",
       is_youtube: e.is_youtube,
       throttle: s,
       cache: e.cache,
@@ -10143,9 +10160,9 @@ function qy(e, t, n, i, r, o, a, s) {
           save_as: n,
           will_use_jsfetch: !1,
           strategy: "m3u8_audio_only",
-          muxer: "mp3",
+          muxer: "mp4",
           url: l.av.audio,
-          extension: "mp3",
+          extension: "m4a",
           is_youtube: e.is_youtube,
           throttle: s,
           cache: e.cache,
@@ -10159,9 +10176,9 @@ function qy(e, t, n, i, r, o, a, s) {
           save_as: n,
           will_use_jsfetch: !1,
           strategy: "m3u8_audio_only",
-          muxer: "mp3",
+          muxer: "mp4",
           url: l.av.video,
-          extension: "mp3",
+          extension: "m4a",
           is_youtube: e.is_youtube,
           throttle: s,
           cache: e.cache,
@@ -10220,10 +10237,10 @@ function Hy(e, t, n, i, r, o, a) {
       download_id: s,
       headers: u,
       strategy: "m3u8_audio_only",
-      muxer: "mp3",
+      muxer: "mp4",
       url: l,
       good_basename: r,
-      extension: "mp3",
+      extension: "m4a",
       is_youtube: e.is_youtube,
       throttle: a,
       cache: e.cache,
@@ -10264,8 +10281,8 @@ function Zy(e, t, n, i, r, o, a, s) {
       strategy: "http_strip_audio_jsfetch",
       url: l.av.video,
       good_basename: r,
-      muxer: "mp3",
-      extension: "mp3",
+      muxer: "mp4",
+      extension: "m4a",
       is_youtube: e.is_youtube,
       size: l.size,
       throttle: s,
@@ -11625,7 +11642,8 @@ function Ib(e) {
     let s = kb(t.mediaGroups.AUDIO);
     s.isSome() && (o = s.value);
   }
-  let a = 0;
+  let p = audioCodecFromGroups(t.mediaGroups?.AUDIO),
+    a = 0;
   for (let s of o) {
     if (!s.attributes.CODECS) continue;
     let u = vi(s.attributes.CODECS);
@@ -11639,10 +11657,24 @@ function Ib(e) {
     s.attributes.BANDWIDTH
       ? (c = { bitrate: L(s.attributes.BANDWIDTH), size: l })
       : (c = { bitrate: z, size: l });
-    let d = { quality: c, demuxer: u.value, index: a };
+    let d = {
+      quality: c,
+      demuxer: u.value,
+      index: a,
+      audio_codec: audioCodecName(s.attributes.CODECS).unwrapOr(p),
+    };
     (r.push(d), a++);
   }
   return ((r = xi(r)), Di(r) ? B([r, n, i]) : R("No playlists"));
+}
+function audioCodecFromGroups(e) {
+  if (!e) return;
+  for (let t of Object.values(e))
+    for (let n of Object.values(t ?? {}))
+      for (let i of n?.playlists ?? []) {
+        let r = audioCodecName(i?.attributes?.CODECS ?? "");
+        if (r.isSome()) return r.value;
+      }
 }
 function Pb(e) {
   for (let t of e.playlists) if (t.contentProtection && ki(t.contentProtection)) return !0;

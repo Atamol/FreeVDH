@@ -31695,6 +31695,9 @@ function G1(t) {
   for (let e of HA) if (e.mime_reg.test(t)) return ue(e.demuxer);
   return te;
 }
+function jA(t) {
+  for (let e of HA) if (e.mime_reg.test(t)) return e.codec;
+}
 function WA(t, e) {
   let o = t.size.map((m) => m.height).unwrapOr(0),
     s = e.size.map((m) => m.height).unwrapOr(0),
@@ -42332,6 +42335,7 @@ async function EP(t, e, i, r) {
       n.push({
         quality: w,
         demuxer: f,
+        audio_codec: jA(p.mime_type),
         av: { video: { url: g.value, content_length: _ }, audio: !1 },
       });
     }
@@ -42354,6 +42358,7 @@ async function EP(t, e, i, r) {
         content_length: w,
         language: _,
         original_audio: k,
+        codec: jA(m.mime_type),
       });
     }
   }
@@ -42371,6 +42376,7 @@ async function EP(t, e, i, r) {
       n.push({
         quality: b,
         demuxer: f.value,
+        audio_codec: _.codec,
         av: {
           video: { url: p.value, content_length: w },
           audio: { url: _.url, content_length: _.content_length },

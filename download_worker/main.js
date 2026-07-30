@@ -2188,6 +2188,13 @@ async function C(e, t) {
       return URL.createObjectURL(new File([i], t, { type: "video/x-matroska" }));
     case "flv":
       return URL.createObjectURL(new File([i], t, { type: "video/x-flv" }));
+    case "m4a":
+      // chrome picks the saved extension from the blob MIME, not from the passed filename
+      return URL.createObjectURL(new File([i], t, { type: "audio/mp4" }));
+    case "opus":
+      return URL.createObjectURL(new File([i], t, { type: "audio/ogg" }));
+    case "webm":
+      return URL.createObjectURL(new File([i], t, { type: "audio/webm" }));
     default:
       return URL.createObjectURL(i);
   }
@@ -2392,8 +2399,8 @@ async function ft(e, t) {
     `jsfetch:${e.url}`,
     "-map",
     "0:a:0",
-    "-c:a",
-    "libmp3lame",
+    "-c",
+    "copy",
     "-avoid_negative_ts",
     "make_zero",
     "-y",
@@ -4441,40 +4448,23 @@ async function Ot(e, t) {
   n.shift();
   let u;
   (_.av.audio && (u = le(_.av.audio.packets)), _.av.audio || M("No audio stream found"));
-  let p = _.av.audio.stream,
-    [, c, y, A] = await g.ff_init_decoder(p.codec_id, p.codecpar),
-    s = await g.ff_decode_multi(c, y, A, _.av.audio.packets, { fin: !1 }),
-    w = "aresample=isf=s16p:osf=fltp,asetnsamples=n=1152:p=0",
-    [E, m, f] = await g.ff_init_filter_graph(
-      w,
-      {
-        sample_rate: s[0].sample_rate,
-        sample_fmt: s[0].format,
-        channel_layout: s[0].channel_layout,
-      },
-      { sample_rate: 44100, sample_fmt: g.AV_SAMPLE_FMT_FLTP, channel_layout: s[0].channel_layout },
-    ),
-    h = await g.ff_filter_multi(m, f, A, s, { fin: !1 }),
-    [R, T, V, b, N] = await g.ff_init_encoder("libmp3lame", {
-      ctx: {
-        bit_rate: 128e3,
-        sample_fmt: g.AV_SAMPLE_FMT_FLTP,
-        sample_rate: 44100,
-        channel_layout: s[0].channel_layout,
-        channels: s[0].channels,
-      },
-      time_base: [1, 44100],
-    }),
-    $ = await g.ff_encode_multi(T, V, b, h, !1);
+  let aStream = _.av.audio.stream;
   await te.open(l.output_filename);
-  let x = { filename: l.output_filename, open: !0, codecpars: !1, device: !0, format_name: "mp3" },
-    [I, ne, ce, [Gr]] = await g.ff_init_muxer(x, [[T, 1, 44100]]),
-    oe = await g.av_opt_set(I, "avoid_negative_ts", "make_zero", 0);
-  (pe(g, oe),
-    (oe = await g.avformat_write_header(I, 0)),
-    me(g, oe),
-    await g.ff_write_multi(I, b, $),
-    await ee(_));
+  let muxOpts = {
+    filename: l.output_filename,
+    open: !0,
+    codecpars: !0,
+    device: !0,
+    format_name: e.muxer,
+  };
+  let muxParams = [[aStream.codecpar, aStream.time_base_num, aStream.time_base_den]];
+  let [I, , ce] = await g.ff_init_muxer(muxOpts, muxParams);
+  let oe = await g.av_opt_set(I, "avoid_negative_ts", "make_zero", 0);
+  pe(g, oe);
+  oe = await g.avformat_write_header(I, 0);
+  me(g, oe);
+  await g.ff_write_multi(I, _.pkt, _.av.audio.packets);
+  await ee(_);
   let q = v(P("not started")),
     Kt = { value: Re },
     et = !1;
@@ -4490,12 +4480,9 @@ async function Ot(e, t) {
       if (q.value == "skip") continue;
       let W = q.value;
       (W.av.audio || M(`No audio found in segment ${Me + 1}`), (u = ue(W.av.audio.packets, u)));
-      let Fe = await g.ff_decode_multi(c, y, A, W.av.audio.packets, { fin: !1 }),
-        qt = await g.ff_filter_multi(m, f, A, Fe, { fin: !1 }),
-        jt = await g.ff_encode_multi(T, V, b, qt, !1);
-      (await g.ff_write_multi(I, W.pkt, jt),
-        l.fetch_args.progress_tracker?.set_percent(100 * (Me / l.total_segments)),
-        await ee(W));
+      await g.ff_write_multi(I, W.pkt, W.av.audio.packets);
+      l.fetch_args.progress_tracker?.set_percent(100 * (Me / l.total_segments));
+      await ee(W);
     }
     if (!q) break;
     if (
@@ -4507,20 +4494,14 @@ async function Ot(e, t) {
             S(n.length > 0));
       })),
       !et)
-    ) {
-      let G = await g.ff_encode_multi(T, V, b, [], !0);
-      await g.ff_write_multi(I, 0, G);
+    )
       break;
-    }
   }
   if (((oe = await g.av_write_trailer(I)), oe != 0)) {
     let fe = await g.strerror(oe);
     M(fe);
   }
   return (
-    await g.ff_free_decoder(c, y, A),
-    await g.avfilter_graph_free_js(E),
-    await g.ff_free_encoder(T, V, b),
     await g.ff_free_muxer(I, ce),
     await te.close(l.output_filename),
     await g.unlink(l.output_filename),
@@ -4534,7 +4515,7 @@ async function Ot(e, t) {
   );
 }
 async function kt(e, t) {
-  let r = `${e.download_id}.${e.muxer}`;
+  let r = `${e.download_id}.${e.extension}`;
   return await L(e, t, r, [
     "-analyzeduration",
     "10M",
@@ -4542,8 +4523,8 @@ async function kt(e, t) {
     "hls",
     "-i",
     `jsfetch:${e.url}`,
-    "-c:a",
-    "libmp3lame",
+    "-c",
+    "copy",
     "-avoid_negative_ts",
     "make_zero",
     "-y",
@@ -4652,7 +4633,7 @@ async function Bt(e, t) {
   ]);
 }
 async function Gt(e, t) {
-  let r = `${e.download_id}.${e.muxer}`;
+  let r = `${e.download_id}.${e.extension}`;
   try {
     return await L(e, t, r, [
       "-analyzeduration",
@@ -4661,10 +4642,8 @@ async function Gt(e, t) {
       `jsfetch:${e.url}`,
       "-map",
       "0:a:0",
-      "-af",
-      "aresample",
-      "-c:a",
-      "libmp3lame",
+      "-c",
+      "copy",
       "-avoid_negative_ts",
       "make_zero",
       "-y",
