@@ -29,12 +29,12 @@ FreeVDHは，Video DownloadHelper ([Chrome](https://chromewebstore.google.com/de
 - サイドパネル，ポップアップの両モード対応
 - ダウンロード回数・品質の制限なし
 
-## インストール
+## インストール (Google Chrome)
 
-1. このリポジトリをクローンまたはダウンロード
-2. Chromeで`chrome://extensions`を開く
-3. 「デベロッパーモード」を有効にする
-4. 「パッケージ化されていない拡張機能を読み込む」をクリックし，このフォルダを選択
+1. [Release](https://github.com/Atamol/FreeVDH/releases)から`FreeVDH-<VERSION>.zip`をダウンロード (解凍しない)
+2. `chrome://extensions`を開く
+3. 「デベロッパーモード」が有効になっていなければ，それを有効にする
+5. 「パッケージ化されていない拡張機能を読み込む」をクリックし，ダウンロードしたReleaseのzipを選択
 
 ## ライセンス
 
