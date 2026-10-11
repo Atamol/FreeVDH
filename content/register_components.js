@@ -12512,7 +12512,9 @@ var T = class T extends N {
         (await md(), ze.default.runtime.reload());
       }),
       (this.button_copy.onclick = async () => {
-        let t = ze.default.runtime.getManifest().version,
+        let t = ((m) => (m.version_name ? `${m.version_name} (VDH ${m.version})` : m.version))(
+            ze.default.runtime.getManifest(),
+          ),
           n = await ze.default.runtime.getPlatformInfo(),
           a = ze.default.i18n.getUILanguage(),
           s = "";
@@ -12566,7 +12568,8 @@ var T = class T extends N {
       (this.button_set_incognito.onclick = () => {
         (kd(), window.close());
       }),
-      (this.span_version.textContent = `v${ze.default.runtime.getManifest().version}`),
+      (this.span_version.textContent = ((m) =>
+        m.version_name ? `v${m.version_name} (VDH ${m.version})` : `v${m.version}`)(ze.default.runtime.getManifest())),
       ze.default.extension.isAllowedIncognitoAccess().then((i) => {
         R(this.section_no_private_browsing, !i);
       }));

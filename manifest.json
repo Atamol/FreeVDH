@@ -185,5 +185,6 @@
       "128": "bitmaps/logo-128-color.png"
     }
   },
-  "version": "10.2.33.2"
+  "version": "10.2.33.2",
+  "version_name": "2.0.1"
 }

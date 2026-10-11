@@ -11123,7 +11123,9 @@ var T = class T extends U {
         (await pd(), ke.default.runtime.reload());
       }),
       (this.button_copy.onclick = async () => {
-        let t = ke.default.runtime.getManifest().version,
+        let t = ((m) => (m.version_name ? `${m.version_name} (VDH ${m.version})` : m.version))(
+            ke.default.runtime.getManifest(),
+          ),
           n = await ke.default.runtime.getPlatformInfo(),
           a = ke.default.i18n.getUILanguage(),
           s = "";
@@ -11177,7 +11179,8 @@ var T = class T extends U {
       (this.button_set_incognito.onclick = () => {
         (yd(), window.close());
       }),
-      (this.span_version.textContent = `v${ke.default.runtime.getManifest().version}`),
+      (this.span_version.textContent = ((m) =>
+        m.version_name ? `v${m.version_name} (VDH ${m.version})` : `v${m.version}`)(ke.default.runtime.getManifest())),
       ke.default.extension.isAllowedIncognitoAccess().then((i) => {
         N(this.section_no_private_browsing, !i);
       }));
