@@ -806,6 +806,16 @@ var $e = {
       USER_AGENT:
         "com.google.android.apps.youtube.vr.oculus/1.65.10 (Linux; U; Android 12L; eureka-user Build/SQ3A.220605.009.A1) gzip",
     },
+    VISIONOS: {
+      NAME: "VISIONOS",
+      VERSION: "1.02",
+      DEVICE_MAKE: "Apple",
+      DEVICE_MODEL: "RealityDevice17,1",
+      OS_NAME: "visionOS",
+      OS_VERSION: "26.5.23O471",
+      USER_AGENT:
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 15_7_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15",
+    },
     YTSTUDIO_ANDROID: { NAME: "ANDROID_CREATOR", VERSION: "22.43.101" },
     YTMUSIC_ANDROID: { NAME: "ANDROID_MUSIC", VERSION: "5.34.51" },
     TV: {
@@ -840,6 +850,7 @@ var $e = {
     ANDROID_CREATOR: "14",
     ANDROID_MUSIC: "21",
     ANDROID_VR: "28",
+    VISIONOS: "101",
     TVHTML5: "7",
     TVHTML5_SIMPLY: "74",
     TVHTML5_SIMPLY_EMBEDDED_PLAYER: "85",
@@ -861,6 +872,7 @@ var $e = {
     "YTMUSIC",
     "ANDROID",
     "ANDROID_VR",
+    "VISIONOS",
     "YTSTUDIO_ANDROID",
     "YTMUSIC_ANDROID",
     "TV",
@@ -2544,6 +2556,17 @@ var $u = class {
           (e.client.clientVersion = Y.ANDROID_VR.VERSION),
           (e.client.clientFormFactor = "SMALL_FORM_FACTOR"),
           (e.client.clientName = Y.ANDROID_VR.NAME));
+        break;
+      case "VISIONOS":
+        ((e.client.deviceMake = Y.VISIONOS.DEVICE_MAKE),
+          (e.client.deviceModel = Y.VISIONOS.DEVICE_MODEL),
+          (e.client.clientVersion = Y.VISIONOS.VERSION),
+          (e.client.clientName = Y.VISIONOS.NAME),
+          (e.client.osName = Y.VISIONOS.OS_NAME),
+          (e.client.osVersion = Y.VISIONOS.OS_VERSION),
+          (e.client.userAgent = Y.VISIONOS.USER_AGENT),
+          delete e.client.browserName,
+          delete e.client.browserVersion);
         break;
       case "YTMUSIC_ANDROID":
         ((e.client.clientVersion = Y.YTMUSIC_ANDROID.VERSION),
@@ -26247,6 +26270,7 @@ var N4 = {
     IOS: "iOS",
     ANDROID: "ANDROID",
     ANDROID_VR: "ANDROID_VR",
+    VISIONOS: "VISIONOS",
     ANDROID_MUSIC: "ANDROID_MUSIC",
     ANDROID_CREATOR: "ANDROID_CREATOR",
     TV: "TVHTML5",
@@ -42129,13 +42153,17 @@ async function pI(t, e) {
       { client_type: "WEB", youtube_client_p: c },
       { client_type: "WEB_EMBEDDED", youtube_client_p: c },
     ],
-    p = [{ client_type: "ANDROID_VR", youtube_client_p: d }],
+    // Order follows upstream's remote ruleset, which leads with VISIONOS since ANDROID_VR started returning 403
+    p = [
+      { client_type: "VISIONOS", youtube_client_p: d },
+      { client_type: "ANDROID_VR", youtube_client_p: d },
+    ],
     f = [
       { client_type: "WEB", youtube_client_p: s },
       { client_type: "WEB_EMBEDDED", youtube_client_p: s },
     ],
     g = [{ client_type: "IOS", youtube_client_p: d }],
-    b = [...p, ...m, ...f, ...g],
+    b = [...p, ...g, ...m, ...f],
     w = te,
     _ = te;
   for (let k of b) {

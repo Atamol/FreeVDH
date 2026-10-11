@@ -2189,7 +2189,7 @@ async function C(e, t) {
     case "flv":
       return URL.createObjectURL(new File([i], t, { type: "video/x-flv" }));
     case "m4a":
-      // chrome picks the saved extension from the blob MIME, not from the passed filename
+      // Chrome picks the saved extension from the blob MIME, not from the passed filename
       return URL.createObjectURL(new File([i], t, { type: "audio/mp4" }));
     case "opus":
       return URL.createObjectURL(new File([i], t, { type: "audio/ogg" }));
@@ -3980,7 +3980,7 @@ async function K(e, t, r, a) {
     }
     return (l++, y);
   });
-  // drop blank prefix on nicolive timeshift so muxer picks up real codec extradata
+  // Drop the blank prefix on nicolive timeshift so the first segment's init carries the real codec extradata
   if (String(e || "").includes("dlive.nicovideo.jp")) {
     d = d.filter((s) => !s.url.includes("/blank/"));
   }
@@ -4100,7 +4100,7 @@ function xe(e, t, r, a) {
   };
 }
 async function Mt(e, t) {
-  // niconico timeshift uses CMAF where per-segment demux corrupts video, concat-then-mux instead
+  // Niconico timeshift uses CMAF where per-segment demux corrupts video, so concat everything and mux once
   let _urlStr = String(e.url || "");
   if (_urlStr.includes("dlive.nicovideo.jp")) {
     return await Mt_cmaf(e, t);

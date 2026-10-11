@@ -12128,7 +12128,7 @@ var ge = class extends U {
         this.browser_download_id &&
           I({ name: "rm_download", data: { browser_download_id: this.browser_download_id } }));
     };
-    // clone the media under a fresh hash, then drop the finished card so it reads as going back
+    // Clone the media under a fresh hash, then drop the finished card so it reads as going back
     let reselect_ = () => {
       this.browser_download_id &&
         (I({ name: "retry_download", data: { media_hash: this.media_hash, tab_id: this.tab_id } }),
