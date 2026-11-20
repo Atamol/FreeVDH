@@ -42185,7 +42185,8 @@ async function pI(t, e) {
     )
       break;
   }
-  (w.isSome() && dI(w.value), _.isSome() && dI(_.value));
+  // Apple clients return HLS next to the direct formats, so keep HLS as a fallback (live) to avoid a duplicate card
+  _.isSome() ? dI(_.value) : w.isSome() && dI(w.value);
 }
 async function kP(t, e, i, r) {
   let n,
